@@ -1,4 +1,4 @@
-import "../scss/Index";
+import "../scss/Index.scss";
 
 const Index = () => {
   return <div>Index</div>;
