@@ -1,74 +1,77 @@
-import React from "react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import "../scss/auth.scss";
+// import getCookie from "../components/CSRFToken";
 
-const LoginPage = () => {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({
-    username: "",
-    password: "",
-  });
+// function LoginPage({ userState, setUserState }) {
+//   const navigate = useNavigate();
+//   const csrftoken = getCookie("csrftoken");
 
-  const URL = "http://127.0.0.1:8000/login/";
+//   const [form, setForm] = useState({
+//     username: "",
+//     password: "",
+//   });
 
-  const login = async (user) => {
-    await fetch(URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(user),
-    });
-  };
+//   console.log(userState);
 
-  function handleChange(e) {
-    setForm((prevState) => ({
-      // Using ES2015 Computed Property Names
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  }
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      await login(form);
-      navigate("/", { replace: true });
-    } catch (err) {
-      console.log(err);
-      // Use something other than an alert in production code
-      alert("Incorrect username or password");
-    }
-  }
+//   const login = async (person) => {
+//     await fetch("http://localhost:8000/auth/login/", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       credentials: "include", // <- THIS
+//       body: JSON.stringify({
+//         username: form.username,
+//         password: form.password,
+//       }),
+//     });
+//     setUserState(csrftoken);
+//     console.log(userState);
+//   };
 
-  return (
-    <div className="auth-form">
-      <form onSubmit={handleSubmit}>
-        <legend>Sign In</legend>
-        <label for="email">Username</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Username"
-          value={form.username}
-          name="username"
-          onChange={handleChange}
-        />
-        <br />
-        <label for="password">Password</label>
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          name="password"
-          onChange={handleChange}
-        />
-        <div className="form-controls">
-          <button>Sign In</button>
-        </div>
-      </form>
-    </div>
-  );
-};
+//   function handleChange(e) {
+//     setForm((prevState) => ({
+//       ...prevState,
+//       [e.target.name]: e.target.value,
+//     }));
+//   }
 
-export default LoginPage;
+//   function handleSubmit(e) {
+//     e.preventDefault();
+//     login(form);
+//     navigate("/", { replace: true });
+//   }
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit} className="auth__form">
+//         <legend>Sign In</legend>
+//         <label htmlFor="username">Username</label>
+//         <br />
+//         <input
+//           type="text"
+//           value={form.username}
+//           name="username"
+//           onChange={handleChange}
+//           className="auth__form-input"
+//         />
+//         <br />
+//         <label htmlFor="password">Password</label>
+//         <br />
+//         <input
+//           type="password"
+//           value={form.password}
+//           name="password"
+//           onChange={handleChange}
+//           className="auth__form-input"
+//         />
+//         <br />
+//         <button>Sign In</button>
+//       </form>
+//       <Link to="/signup">Signup</Link>
+//     </div>
+//   );
+// }
+
+// export default LoginPage;
