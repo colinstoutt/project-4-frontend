@@ -4,11 +4,11 @@ import Roster from "../pages/Roster";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
 
-const Nav = () => {
+const Nav = ({ team }) => {
   return (
     <div className="nav">
       <div className="nav__main-links">
-        <div className="nav__logo"></div>
+        {/* <img className="nav__logo" src={team.logo_url} alt={team.mascot} /> */}
         <Link className="nav__link" to="/">
           <span>Team Summary</span>
         </Link>
