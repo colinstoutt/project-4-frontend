@@ -9,28 +9,28 @@ import Recruitment from "../pages/Recruitment";
 // import ProtectedRoute from "../components/Protected-Route";
 
 const Main = (props) => {
-  const URL = "http://localhost:8000/manager/team/10/";
-  const [team, setTeam] = useState(null);
+  const URL = "http://localhost:8000/manager/team/11/";
 
   // INDEX
   const getTeam = async () => {
     const data = await fetch(URL).then((res) => res.json());
-    setTeam(data);
+    props.setTeam(data);
   };
 
   useEffect(() => {
     getTeam();
   }, []);
 
-  console.log(team);
-
   return (
     <main>
       <Routes>
-        <Route path="/" element={<Index team={team} />} />
-        <Route path="/roster" element={<Roster team={team} />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/" element={<Index team={props.team} />} />
+        <Route path="/roster" element={<Roster team={props.team} />} />
+        <Route path="/schedule" element={<Schedule team={props.team} />} />
+        <Route
+          path="/recruitment"
+          element={<Recruitment team={props.team} />}
+        />
         {/* <Route path="/login" element={<LoginPage {...props} />} />
         <Route path="/signup" element={<SignupPage {...props} />} /> */}
       </Routes>
