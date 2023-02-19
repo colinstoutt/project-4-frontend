@@ -27,7 +27,6 @@ video {
   max-width: 100%;
 }
 .App {
-  border-top: 12px solid #4f8ff0;
   display: flex;
 }
 .main-container {
