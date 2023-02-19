@@ -1,0 +1,13 @@
+.game {
+  background-color: white;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 5px;
+  &__time {
+    color: #9f9f9f;
+  }
+  &__matchup {
+    font-size: 1.5rem;
+  }
+}
