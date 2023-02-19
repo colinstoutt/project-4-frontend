@@ -8,7 +8,7 @@ const Nav = ({ team }) => {
   return (
     <div className="nav">
       <div className="nav__main-links">
-        {/* <img className="nav__logo" src={team.logo_url} alt={team.mascot} /> */}
+        <img className="nav__logo" src={team.logo_url} alt={team.mascot} />
         <Link className="nav__link" to="/">
           <span>Team Summary</span>
         </Link>

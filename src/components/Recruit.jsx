@@ -17,6 +17,8 @@ const Recruit = (props) => {
             <th>Hometown</th>
             <th>Height</th>
             <th>Weight</th>
+            <th>Position</th>
+            <th>Current Team</th>
             <th>Contact</th>
           </tr>
         </thead>
@@ -25,22 +27,9 @@ const Recruit = (props) => {
             <td>{props.hometown}</td>
             <td>{props.height}</td>
             <td>{props.weight}</td>
-            <td>{props.contact}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table className="table-two">
-        <thead className="recruit__thead">
-          <tr>
-            <th>Position</th>
-            <th>Current Team</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
             <td>{props.position}</td>
             <td>{props.current_team}</td>
+            <td>{props.contact}</td>
           </tr>
         </tbody>
       </table>
