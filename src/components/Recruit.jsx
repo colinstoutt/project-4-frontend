@@ -1,0 +1,59 @@
+import React from "react";
+import "../scss/Recruit.scss";
+
+const Recruit = (props) => {
+  return (
+    <div
+      className="recruit"
+      style={{ borderLeft: `10px solid ${props.team.team_color}` }}
+    >
+      <h1 className="recruit__heading">
+        {props.first_name} {props.last_name}
+      </h1>
+
+      <table className="table-one">
+        <thead className="recruit__thead">
+          <tr>
+            <th>Hometown</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Contact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{props.hometown}</td>
+            <td>{props.height}</td>
+            <td>{props.weight}</td>
+            <td>{props.contact}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table className="table-two">
+        <thead className="recruit__thead">
+          <tr>
+            <th>Position</th>
+            <th>Current Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{props.position}</td>
+            <td>{props.current_team}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <label className="recruit__notes" htmlFor="notes">
+        Notes
+      </label>
+      <br />
+      <textarea name="notes" id="" cols="70" rows="2">
+        {props.notes}
+      </textarea>
+    </div>
+  );
+};
+
+export default Recruit;

@@ -1,0 +1,33 @@
+.recruit {
+  background-color: white;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  padding: 1rem;
+  font-weight: 300;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  &__heading {
+    font-size: 1.5rem;
+  }
+  &__thead {
+    color: #9f9f9f;
+    font-size: 0.9rem;
+  }
+  &__notes {
+    color: #9f9f9f;
+  }
+}
+.table-one {
+  width: 25rem;
+  text-align: left;
+}
+.table-two {
+  width: 15rem;
+
+  text-align: left;
+}
+textarea {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.4rem;
+}
