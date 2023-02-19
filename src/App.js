@@ -4,11 +4,13 @@ import Main from "./components/Main";
 import Nav from "./components/Nav";
 
 function App(props) {
+  const [team, setTeam] = useState(null);
+
   return (
     <div className="App">
-      <Nav />
+      <Nav team={team} />
       <div className="main-container">
-        <Main />
+        <Main team={team} setTeam={setTeam} />
       </div>
     </div>
   );
