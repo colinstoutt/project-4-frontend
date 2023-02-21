@@ -1,8 +1,22 @@
 .roster {
   margin: 3rem;
+  min-width: 990px;
   &__heading {
     font-size: 2rem;
     margin-bottom: 1rem;
+    &-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &-edit {
+      color: grey;
+      font-weight: 300;
+      &:hover {
+        cursor: pointer;
+        color: black;
+      }
+    }
   }
   &__line-divide {
     width: 100%;
@@ -14,11 +28,12 @@
     border-style: hidden;
     border-collapse: collapse;
     font-size: 1rem;
+    font-weight: 300;
     text-align: left;
     background-color: white;
-    border-radius: 5px;
+    // border-radius: 5px;
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 10px;
   }
   &__table-thead-tr {
     background-color: #4f8ff075;
@@ -30,15 +45,51 @@
   }
   &__table-tr-th {
     padding: 0.5rem;
-    font-weight: 500;
-    &:first-child {
-      border-radius: 5px 0 0 0;
-    }
-    &:last-child {
-      border-radius: 0 5px 0 0;
-    }
+    font-weight: 300;
   }
   &__table-tr-td {
     padding: 0.5rem;
+  }
+  &__delete {
+    font-size: 0.9rem;
+    margin-left: 0.2rem;
+    padding: 0 1rem;
+    color: rgba(0, 0, 0, 0.452);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(128, 128, 128, 0.408);
+    border-radius: 2px;
+    &:hover {
+      border: 1px solid rgb(227, 73, 73);
+      color: rgb(227, 73, 73);
+      cursor: pointer;
+    }
+  }
+  &__input {
+    margin-top: 1rem;
+    border: none;
+    padding: 0.3rem 1rem;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+
+    &-submit {
+      padding: 0.15rem 1rem;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid white;
+      border-radius: 2px;
+      &:hover {
+        border: 1px solid rgb(89, 183, 94);
+        color: rgb(89, 183, 94);
+        cursor: pointer;
+      }
+    }
+
+    &-tr {
+      width: 100%;
+    }
+  }
+  &__status-pill {
+    border-radius: 50px;
+    background-color: grey;
+    padding: 0 1rem;
   }
 }

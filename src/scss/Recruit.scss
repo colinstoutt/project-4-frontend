@@ -1,12 +1,12 @@
 .recruit {
   background-color: white;
   margin-bottom: 1.5rem;
-  border-radius: 5px;
   padding: 1rem;
   font-weight: 300;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
   &__heading {
     font-size: 1.5rem;
+    font-weight: 500;
   }
   &__thead {
     color: #9f9f9f;
@@ -30,4 +30,7 @@ textarea {
   border: none;
   border-radius: 5px;
   padding: 0.2rem 0.4rem;
+}
+.lbs {
+  font-size: 0.8rem;
 }

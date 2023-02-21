@@ -6,11 +6,12 @@
   background-color: #2a2e30;
   padding: 2.5rem;
   font-size: 0.9rem;
+  min-width: 213px;
 
   &__logo {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 5px;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 3px;
     margin-bottom: 1.2rem;
     background-color: grey;
   }
