@@ -1,6 +1,8 @@
 import React from "react";
 import "../scss/Game.scss";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Game = (props) => {
   const navigate = useNavigate();
@@ -22,7 +24,16 @@ const Game = (props) => {
       </div>
       <div className="game__matchup">
         <h1>
-          {props.awayTeam} @ {props.homeTeam}
+          {props.awayTeam} @ {props.homeTeam}{" "}
+          <Link to={`/schedule/${props.id}/`}>
+            <EditIcon
+              className="schedule__edit-icon"
+              sx={{
+                fontSize: "1rem",
+                marginLeft: "-0.1rem",
+              }}
+            />
+          </Link>
         </h1>
       </div>
       <div className="game__location-del">
