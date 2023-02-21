@@ -1,7 +1,17 @@
 import React from "react";
 import "../scss/Game.scss";
+import { useNavigate } from "react-router";
 
 const Game = (props) => {
+  const navigate = useNavigate();
+  const URL = "http://localhost:8000/manager/game/";
+  async function deleteGame(id) {
+    await fetch(`${URL}${id}/`, { method: "DELETE" });
+    console.log(id);
+    props.getTeam();
+    navigate("/schedule");
+  }
+
   return (
     <div
       className="game"
@@ -15,7 +25,12 @@ const Game = (props) => {
           {props.awayTeam} @ {props.homeTeam}
         </h1>
       </div>
-      <div className="game__location">{props.location}</div>
+      <div className="game__location-del">
+        <div className="game__location">{props.location}</div>
+        <button onClick={() => deleteGame(props.id)} className="game__delete">
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
