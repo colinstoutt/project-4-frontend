@@ -25,8 +25,14 @@ const Recruit = (props) => {
         <tbody>
           <tr>
             <td>{props.hometown}</td>
-            <td>{props.height}</td>
-            <td>{props.weight}</td>
+            <td>
+              {Math.floor(props.height / 12)}'
+              {props.height - Math.floor(props.height / 12) * 12}
+            </td>
+            <td>
+              {props.weight}
+              <span className="lbs">lbs</span>
+            </td>
             <td>{props.position}</td>
             <td>{props.current_team}</td>
             <td>{props.contact}</td>
@@ -38,9 +44,13 @@ const Recruit = (props) => {
         Notes
       </label>
       <br />
-      <textarea name="notes" id="" cols="70" rows="2">
-        {props.notes}
-      </textarea>
+      <textarea
+        name="notes"
+        id=""
+        cols="70"
+        rows="2"
+        defaultValue={props.notes}
+      ></textarea>
     </div>
   );
 };
