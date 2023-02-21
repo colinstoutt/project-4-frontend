@@ -1,13 +1,33 @@
 .recruitment {
   margin: 3rem;
   &__heading {
+    display: flex;
+    justify-content: space-between;
     font-size: 2rem;
     margin-bottom: 1rem;
+    &-add {
+      font-size: 1rem;
+      padding: 0.3rem 1rem;
+      background-color: #eeeeee;
+      border: 1px solid grey;
+      margin-top: 0.6rem;
+      border-radius: 2px;
+      font-weight: 300;
+      &:hover {
+        border: 1px solid rgb(89, 183, 94);
+        color: rgb(89, 183, 94);
+        cursor: pointer;
+      }
+    }
   }
   &__line-divide {
     width: 100%;
     height: 1px;
     background-color: lightgrey;
     margin-bottom: 1rem;
+  }
+  &__show-link {
+    text-decoration: none;
+    color: black;
   }
 }

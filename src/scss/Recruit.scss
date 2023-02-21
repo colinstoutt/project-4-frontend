@@ -4,6 +4,8 @@
   padding: 1rem;
   font-weight: 300;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
+  position: relative;
+
   &__heading {
     font-size: 1.5rem;
     font-weight: 500;
@@ -14,15 +16,28 @@
   }
   &__notes {
     color: #9f9f9f;
+    margin-bottom: -1.5rem;
+  }
+  &__delete {
+    position: absolute;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    font-size: 0.9rem;
+    margin-left: 0.2rem;
+    padding: 0 1rem;
+    color: rgba(0, 0, 0, 0.452);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(128, 128, 128, 0.408);
+    border-radius: 2px;
+    &:hover {
+      border: 1px solid rgb(227, 73, 73);
+      color: rgb(227, 73, 73);
+      cursor: pointer;
+    }
   }
 }
 .table-one {
-  width: 42rem;
-  text-align: left;
-}
-.table-two {
-  width: 15rem;
-
+  width: 55rem;
   text-align: left;
 }
 textarea {
