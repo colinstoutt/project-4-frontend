@@ -19,19 +19,19 @@ const Player = (props) => {
               props.status === "Active"
                 ? {
                     backgroundColor: "rgb(104, 219, 102, .3)",
-                    border: "2px solid rgb(104, 219, 102)",
+                    border: "1px solid rgb(104, 219, 102)",
                   }
                 : {
                     backgroundColor: "rgb(255, 195, 54, 0.3)",
-                    border: "2px solid rgb(255, 195, 54)",
+                    border: "1px solid rgb(255, 195, 54)",
                   } && props.status === "Inactive"
                 ? {
                     backgroundColor: "rgb(255, 195, 54, 0.3)",
-                    border: "2px solid rgb(255, 195, 54)",
+                    border: "1px solid rgb(255, 195, 54)",
                   }
                 : {
                     backgroundColor: "rgb(206, 66, 66, 0.3)",
-                    border: "2px solid rgb(206, 66, 66)",
+                    border: "1px solid rgb(206, 66, 66)",
                   }
             }
           >
