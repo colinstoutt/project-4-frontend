@@ -6,6 +6,8 @@ import Index from "../pages/Index";
 import Roster from "../pages/Roster";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
+import RecruitAdd from "../pages/RecruitAdd";
+import RecruitShow from "../pages/RecruitShow";
 import EditTeam from "../pages/EditTeam";
 import SceduleEdit from "../pages/SceduleEdit";
 // import ProtectedRoute from "../components/Protected-Route";
@@ -25,7 +27,15 @@ const Main = (props) => {
         />
         <Route
           path="/recruitment"
-          element={<Recruitment team={props.team} />}
+          element={<Recruitment team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
+          path="/recruitment/add"
+          element={<RecruitAdd team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
+          path="/recruitment/:id"
+          element={<RecruitShow team={props.team} getTeam={props.getTeam} />}
         />
         <Route
           path="/edit-team"
