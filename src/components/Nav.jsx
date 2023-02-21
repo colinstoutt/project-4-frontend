@@ -8,7 +8,13 @@ const Nav = ({ team }) => {
   return (
     <div className="nav">
       <div className="nav__main-links">
-        <img className="nav__logo" src={team.logo_url} alt={team.mascot} />
+        {team ? (
+          <Link to="/edit-team">
+            <img className="nav__logo" src={team.logo_url} alt={team.mascot} />
+          </Link>
+        ) : (
+          <div></div>
+        )}
         <Link className="nav__link" to="/">
           <span>Team Summary</span>
         </Link>
@@ -21,10 +27,10 @@ const Nav = ({ team }) => {
         <Link className="nav__link" to="/recruitment">
           <span>Recruitment</span>
         </Link>
+        <Link to="/login">
+          <span className="nav__logout nav__link">Sign Out</span>
+        </Link>
       </div>
-      <Link to="/login">
-        <span className="nav__logout nav__link">Sign Out</span>
-      </Link>
     </div>
   );
 };
