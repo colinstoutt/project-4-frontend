@@ -16,7 +16,13 @@ const Nav = ({ team }) => {
           <div></div>
         )}
         <Link className="nav__link" to="/">
-          <span>Team Summary</span>
+          {team ? (
+            <span>
+              {team.city} {team.mascot}
+            </span>
+          ) : (
+            <div>Team Summary</div>
+          )}
         </Link>
         <Link className="nav__link" to="/roster">
           <span>Roster</span>
