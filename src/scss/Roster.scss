@@ -63,6 +63,11 @@
       color: rgb(227, 73, 73);
       cursor: pointer;
     }
+    &-td {
+      display: flex;
+      justify-content: end;
+      margin-top: 0.09rem;
+    }
   }
   &__edit {
     &:hover {
