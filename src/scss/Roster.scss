@@ -1,12 +1,12 @@
 .roster {
   margin: 3rem;
-  min-width: 990px;
+  min-width: 800px;
   &__heading {
     font-size: 2rem;
     margin-bottom: 1rem;
     &-container {
       display: flex;
-      align-items: center;
+      align-items: start;
       justify-content: space-between;
     }
     &-edit {
@@ -54,13 +54,19 @@
     font-size: 0.9rem;
     margin-left: 0.2rem;
     padding: 0 1rem;
-    color: rgba(0, 0, 0, 0.452);
+    color: rgba(0, 0, 0, 0.464);
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgba(128, 128, 128, 0.408);
+    border: 1px solid rgba(128, 128, 128, 0.173);
     border-radius: 2px;
     &:hover {
       border: 1px solid rgb(227, 73, 73);
       color: rgb(227, 73, 73);
+      cursor: pointer;
+    }
+  }
+  &__edit {
+    &:hover {
+      color: black;
       cursor: pointer;
     }
   }
@@ -93,7 +99,10 @@
   }
   &__status-pill {
     border-radius: 50px;
-    background-color: grey;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
+}
+.edit-delete {
+  display: flex;
+  justify-content: end;
 }
