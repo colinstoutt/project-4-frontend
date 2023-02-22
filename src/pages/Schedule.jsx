@@ -4,7 +4,12 @@ import Game from "../components/Game";
 import { Link } from "react-router-dom";
 
 const Schedule = ({ team, getTeam }) => {
+  // const sortByDate = () => {};
   const loaded = () => {
+    team.games.sort(function (a, b) {
+      return Date.parse(a.date) - Date.parse(b.date);
+    });
+
     return (
       <div className="schedule">
         <div className="schedule__heading-container">
