@@ -36,18 +36,18 @@ video {
 }
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: black;
+  color: darkgray;
   opacity: 1; /* Firefox */
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: black;
+  color: rgb(249, 184, 54);
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: black;
+  color: darkgray;
 }
 
 /* Generic styles */
