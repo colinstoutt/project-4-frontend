@@ -12,6 +12,10 @@ const Roster = ({ team, getTeam }) => {
   }
 
   const loaded = () => {
+    team.players.sort(function (a, b) {
+      return a.number - b.number;
+    });
+
     const rows = team.players.map((item, index) => {
       return (
         <Player
