@@ -60,7 +60,10 @@ const RecruitAdd = ({ team, getTeam }) => {
     <div className="recruitAdd">
       <h1 className="recruitAdd__heading">Add Recruit</h1>
       <div className="recruitAdd__line-divide"></div>
-      <div className="recruitAdd__container">
+      <div
+        className="recruitAdd__container"
+        style={{ borderLeft: `10px solid ${team.team_color}` }}
+      >
         <form onSubmit={handleSubmit}>
           <label className="recruitShow__label" htmlFor="hometown">
             First Name

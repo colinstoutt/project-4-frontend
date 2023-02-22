@@ -39,7 +39,10 @@ const EditPlayer = ({ team, getTeam }) => {
       <div className="playerShow">
         <h1 className="playerShow__heading">Edit Player</h1>
         <div className="playerShow__line-divide"></div>
-        <div className="playerShow__recruit-container">
+        <div
+          className="playerShow__recruit-container"
+          style={{ borderLeft: `10px solid ${team.team_color}` }}
+        >
           <div className="playerShow__name">
             {player.first_name} {player.last_name}
           </div>

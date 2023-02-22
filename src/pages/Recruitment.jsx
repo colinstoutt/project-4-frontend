@@ -11,7 +11,7 @@ const Recruitment = ({ team, getTeam }) => {
         <div className="recruitment__heading">
           <h1>Recruitment</h1>
           <Link to="/recruitment/add">
-            <button className="recruitment__heading-add">Add Recruit</button>
+            <button className="add-button">Add Recruit</button>
           </Link>
         </div>
         <div className="recruitment__line-divide"></div>

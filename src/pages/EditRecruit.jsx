@@ -39,7 +39,10 @@ const RecruitShow = ({ team, getTeam, updateRecruit }) => {
       <div className="recruitShow">
         <h1 className="recruitShow__heading">Edit Recruit</h1>
         <div className="recruitShow__line-divide"></div>
-        <div className="recruitShow__recruit-container">
+        <div
+          className="recruitShow__recruit-container"
+          style={{ borderLeft: `10px solid ${team.team_color}` }}
+        >
           <div className="recruitShow__name">
             {recruit.first_name} {recruit.last_name}
           </div>

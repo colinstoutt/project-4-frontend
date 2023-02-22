@@ -10,7 +10,12 @@
     background-color: lightgrey;
     margin-bottom: 1rem;
   }
-  &__form {
+  &__form-container {
+    &-form {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0 5px 5px 0;
+    }
     &-label {
       font-size: 1.2rem;
     }
@@ -23,7 +28,7 @@
     background-color: rgb(255, 255, 255);
     border: 1px solid grey;
     margin-top: 0.6rem;
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(89, 183, 94);
       color: rgb(89, 183, 94);

@@ -31,7 +31,7 @@
     font-weight: 300;
     text-align: left;
     background-color: white;
-    // border-radius: 5px;
+    border-radius: 5px;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 10px;
   }
@@ -42,10 +42,19 @@
     &:nth-child(even) {
       background-color: #f6f6f6;
     }
+    &:last-of-type {
+      border-radius: 5px;
+    }
   }
   &__table-tr-th {
     padding: 0.5rem;
     font-weight: 300;
+    &:first-child {
+      border-radius: 5px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 5px 0 0;
+    }
   }
   &__table-tr-td {
     padding: 0.5rem;
@@ -57,12 +66,13 @@
     color: rgba(0, 0, 0, 0.464);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgba(128, 128, 128, 0.173);
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(227, 73, 73);
       color: rgb(227, 73, 73);
       cursor: pointer;
     }
+
     &-td {
       display: flex;
       justify-content: end;
@@ -85,12 +95,10 @@
     &-submit {
       font-size: 0.9rem;
       padding: 0.27rem 1rem;
-
       font-weight: 300;
-
       background-color: rgb(255, 255, 255);
       border: 1px solid white;
-      border-radius: 2px;
+      border-radius: 5px;
       &:hover {
         border: 1px solid rgb(89, 183, 94);
         color: rgb(89, 183, 94);
@@ -101,10 +109,6 @@
     &-tr {
       width: 100%;
     }
-  }
-  &__status-pill {
-    border-radius: 50px;
-    padding: 0 0.5rem;
   }
 }
 .edit-delete {

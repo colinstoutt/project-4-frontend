@@ -17,6 +17,7 @@
     font-weight: 300;
     box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
     position: relative;
+    border-radius: 0 5px 5px 0;
   }
   &__name {
     font-size: 1.5rem;
@@ -34,7 +35,7 @@
     padding: 0.3rem 1rem;
     background-color: rgb(255, 255, 255);
     border: 1px solid grey;
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(89, 183, 94);
       color: rgb(89, 183, 94);

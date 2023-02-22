@@ -3,6 +3,7 @@
   margin-bottom: 1rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 5px;
+  border-radius: 0 5px 5px 0;
   &__time {
     color: #9f9f9f;
   }
@@ -22,7 +23,7 @@
     padding: 0.3rem 1rem;
     background-color: rgb(255, 255, 255);
     border: 1px solid grey;
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(89, 183, 94);
       color: rgb(89, 183, 94);
@@ -36,7 +37,7 @@
     color: rgba(0, 0, 0, 0.452);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgba(128, 128, 128, 0.408);
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(227, 73, 73);
       color: rgb(227, 73, 73);

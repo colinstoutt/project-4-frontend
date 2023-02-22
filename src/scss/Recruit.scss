@@ -5,6 +5,7 @@
   font-weight: 300;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 8px;
   position: relative;
+  border-radius: 0 5px 5px 0;
 
   &__heading {
     font-size: 1.5rem;
@@ -28,7 +29,7 @@
     color: rgba(0, 0, 0, 0.452);
     background-color: rgb(255, 255, 255);
     border: 1px solid rgba(128, 128, 128, 0.408);
-    border-radius: 2px;
+    border-radius: 5px;
     &:hover {
       border: 1px solid rgb(227, 73, 73);
       color: rgb(227, 73, 73);
