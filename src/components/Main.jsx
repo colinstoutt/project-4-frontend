@@ -4,12 +4,15 @@ import Index from "../pages/Index";
 // import LoginPage from "../pages/LoginPage";
 // import SignupPage from "../pages/SignupPage";
 import Roster from "../pages/Roster";
+import AddPlayer from "../pages/AddPlayer";
+import EditPlayer from "../pages/EditPlayer";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
-import RecruitAdd from "../pages/RecruitAdd";
-import RecruitShow from "../pages/RecruitShow";
+import AddRecruit from "../pages/AddRecruit";
+import RecruitShow from "../pages/EditRecruit";
 import EditTeam from "../pages/EditTeam";
-import SceduleEdit from "../pages/SceduleEdit";
+import AddGame from "../pages/AddGame";
+import EditGame from "../pages/EditGame";
 // import ProtectedRoute from "../components/Protected-Route";
 
 const Main = (props) => {
@@ -22,8 +25,24 @@ const Main = (props) => {
           element={<Roster team={props.team} getTeam={props.getTeam} />}
         />
         <Route
+          path="roster/add"
+          element={<AddPlayer team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
+          path="/roster/:id"
+          element={<EditPlayer team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
           path="/schedule"
           element={<Schedule team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
+          path="/schedule/add"
+          element={<AddGame team={props.team} getTeam={props.getTeam} />}
+        />
+        <Route
+          path="/schedule/:id"
+          element={<EditGame team={props.team} getTeam={props.getTeam} />}
         />
         <Route
           path="/recruitment"
@@ -31,7 +50,7 @@ const Main = (props) => {
         />
         <Route
           path="/recruitment/add"
-          element={<RecruitAdd team={props.team} getTeam={props.getTeam} />}
+          element={<AddRecruit team={props.team} getTeam={props.getTeam} />}
         />
         <Route
           path="/recruitment/:id"
@@ -41,10 +60,7 @@ const Main = (props) => {
           path="/edit-team"
           element={<EditTeam team={props.team} getTeam={props.getTeam} />}
         />
-        <Route
-          path="/edit-schedule"
-          element={<SceduleEdit team={props.team} getTeam={props.getTeam} />}
-        />
+
         {/* <Route path="/login" element={<LoginPage {...props} />} />
         <Route path="/signup" element={<SignupPage {...props} />} /> */}
       </Routes>
