@@ -1,7 +1,39 @@
+import { Upcoming } from "@mui/icons-material";
 import "../scss/Index.scss";
 
 const Index = ({ team }) => {
   const loaded = () => {
+    let activeCount = 0;
+    let inactiveCount = 0;
+    let irCount = 0;
+
+    let diff = Infinity;
+
+    function getUpcomingGame() {
+      for (let i = 0; i < team.games.length; i++) {
+        if (
+          Math.abs(Date.parse(team.games[i].date) - Date.parse(Date())) < diff
+        ) {
+          diff = Math.abs(Date.parse(team.games[i].date) - Date.parse(Date()));
+        }
+
+        return team.games[i];
+      }
+    }
+
+    const { date, time, home_team, away_team } = getUpcomingGame();
+
+    team.players.forEach((player) => {
+      if (player.status === "Active") {
+        activeCount++;
+      }
+      if (player.status === "Inactive") {
+        inactiveCount++;
+      }
+      if (player.status === "IR") {
+        irCount++;
+      }
+    });
     return (
       <div className="index">
         <h1 className="index__heading">
@@ -14,24 +46,28 @@ const Index = ({ team }) => {
         >
           <div className="index__game">
             <div className="index__subtitle">Upcoming game</div>
-            <div className="index__game-matchup">Spartans @ Wildcats</div>
-            <div className="index__game-datetime">08-12-23 7:00PM</div>
+            <div className="index__game-matchup">
+              {away_team} @ {home_team}
+            </div>
+            <div className="index__game-datetime">
+              {date} {time}
+            </div>
           </div>
           <div className="index__subtitle">Roster</div>
           <div className="index__roster">
             <div className="index__roster-status">
               <span className="index__roster-status-title">Active</span>
-              <span className="index__roster-status-num">9</span>
+              <span className="index__roster-status-num">{activeCount}</span>
             </div>
             <div className="index__roster-status">
               <span className="index__roster-status-title">Inactive</span>
-              <span className="index__roster-status-num">2</span>
+              <span className="index__roster-status-num">{inactiveCount}</span>
             </div>
             <div className="index__roster-status">
               <span className="index__roster-status-title">
                 Injured Reserve
               </span>
-              <span className="index__roster-status-num">1</span>
+              <span className="index__roster-status-num">{irCount}</span>
             </div>
           </div>
         </div>
