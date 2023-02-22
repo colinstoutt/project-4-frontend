@@ -34,32 +34,35 @@ const Player = (props) => {
             style={
               props.status === "Active"
                 ? {
-                    border: "1px solid rgb(104, 219, 102)",
+                    color: "rgb(73, 184, 123)",
+                    fontWeight: "500",
                   }
                 : {
-                    border: "1px solid rgb(255, 195, 54)",
+                    color: "rgb(249, 184, 54)",
+                    fontWeight: "500",
                   } && props.status === "Inactive"
                 ? {
-                    border: "1px solid rgb(255, 195, 54)",
+                    color: "rgb(249, 184, 54)",
+                    fontWeight: "500",
                   }
                 : {
-                    border: "1px solid rgb(206, 66, 66)",
+                    color: "rgb(206, 66, 66)",
+                    fontWeight: "500",
                   }
             }
           >
             {props.status}
           </span>
         </td>
-        <div className="edit-delete">
-          <td className="roster__table-tr-td roster__table-tr-td-status ">
-            <button
-              className="roster__delete"
-              onClick={() => props.delete(props.id)}
-            >
-              Delete
-            </button>
-          </td>
-        </div>
+
+        <td className="roster__table-tr-td roster__table-tr-td-status roster__delete-td">
+          <button
+            className="roster__delete"
+            onClick={() => props.delete(props.id)}
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </>
   );
