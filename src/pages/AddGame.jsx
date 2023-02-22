@@ -1,11 +1,11 @@
 import React from "react";
-import GameEdit from "./EditGame";
-import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "../scss/Game.scss";
+import { useNavigate } from "react-router-dom";
 
 const ScheduleEdit = ({ team, getTeam }) => {
+  const navigate = useNavigate();
   const URL = "http://localhost:8000/manager/game/";
   const [gameForm, setGameForm] = useState({
     location: "",
@@ -42,6 +42,7 @@ const ScheduleEdit = ({ team, getTeam }) => {
       away_team: "",
       team_id: 12,
     });
+    navigate("/schedule");
   }
 
   const loaded = () => {
