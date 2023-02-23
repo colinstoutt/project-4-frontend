@@ -1,6 +1,10 @@
-# Sports Managment Application
+# Team Manager Application
 
-This web app will allow a sports organization to keep a record of it's player roster, scedule and potential recruits.
+This web app will allow a sports team to keep a record of it's player roster, scedule and potential recruits.
+
+## Live Link
+
+https://vermillion-khapse-53bfce.netlify.app
 
 ## Backend Repository
 
