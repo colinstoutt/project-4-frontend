@@ -4,21 +4,26 @@ import Roster from "../pages/Roster";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
 
-const Nav = ({ team }) => {
+const Nav = ({ data, handleLogout }) => {
+  console.log(data);
   return (
     <div className="nav">
       <div className="nav__main-links">
-        {team ? (
+        {data ? (
           <Link to="/edit-team">
-            <img className="nav__logo" src={team.logo_url} alt={team.mascot} />
+            <img
+              className="nav__logo"
+              src={data.data[0].logo_url}
+              alt={data.data[0].mascot}
+            />
           </Link>
         ) : (
           <div></div>
         )}
         <Link className="nav__link" to="/">
-          {team ? (
+          {data ? (
             <span>
-              {team.city} {team.mascot}
+              {data.data[0].city} {data.data[0].mascot}
             </span>
           ) : (
             <div>Team Summary</div>
@@ -34,7 +39,12 @@ const Nav = ({ team }) => {
           <span>Recruitment</span>
         </Link>
         <Link to="/login">
-          <span className="nav__logout nav__link">Sign Out</span>
+          <span
+            className="nav__logout nav__link"
+            onClick={() => handleLogout()}
+          >
+            Sign Out
+          </span>
         </Link>
       </div>
     </div>

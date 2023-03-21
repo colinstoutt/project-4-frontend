@@ -1,39 +1,45 @@
 import { Upcoming } from "@mui/icons-material";
 import "../scss/Index.scss";
 
-const Index = ({ team }) => {
+const Index = ({ data }) => {
+  const team = data.data[0];
+  console.log(team._id);
+  const players = data.players.filter((player) => player.team === team._id);
+  console.log(players);
+
   const loaded = () => {
     let activeCount = 0;
     let inactiveCount = 0;
     let irCount = 0;
 
-    let diff = Infinity;
+    // let diff = Infinity;
+    // let upcomingGame = {};
 
-    function getUpcomingGame() {
-      for (let i = 0; i < team.games.length; i++) {
-        if (
-          Math.abs(Date.parse(team.games[i].date) - Date.parse(Date())) < diff
-        ) {
-          diff = Math.abs(Date.parse(team.games[i].date) - Date.parse(Date()));
-        }
+    // function getUpcomingGame() {
+    //   for (let i = 0; i < data.games.length; i++) {
+    //     if (
+    //       Math.abs(Date.parse(data.games[i].date) - Date.parse(Date())) < diff
+    //     ) {
+    //       diff = Math.abs(Date.parse(data.games[i].date) - Date.parse(Date()));
+    //       upcomingGame = team.games[i];
+    //     }
 
-        return team.games[i];
-      }
-    }
+    //     return upcomingGame;
+    //   }
+    // }
+    // const { date, time, home_team, away_team } = getUpcomingGame();
 
-    const { date, time, home_team, away_team } = getUpcomingGame();
-
-    team.players.forEach((player) => {
-      if (player.status === "Active") {
-        activeCount++;
-      }
-      if (player.status === "Inactive") {
-        inactiveCount++;
-      }
-      if (player.status === "IR") {
-        irCount++;
-      }
-    });
+    // data.players.forEach((player) => {
+    //   if (player.status === "Active") {
+    //     activeCount++;
+    //   }
+    //   if (player.status === "Inactive") {
+    //     inactiveCount++;
+    //   }
+    //   if (player.status === "IR") {
+    //     irCount++;
+    //   }
+    // });
     return (
       <div className="index">
         <h1 className="index__heading">
@@ -46,12 +52,8 @@ const Index = ({ team }) => {
         >
           <div className="index__game">
             <div className="index__subtitle">Upcoming game</div>
-            <div className="index__game-matchup">
-              {away_team} @ {home_team}
-            </div>
-            <div className="index__game-datetime">
-              {date} {time}
-            </div>
+            <div className="index__game-matchup">away_team @ home_team</div>
+            <div className="index__game-datetime">date time</div>
           </div>
           <div className="index__subtitle">Roster</div>
           <div className="index__roster">
@@ -77,7 +79,7 @@ const Index = ({ team }) => {
   const loading = () => {
     <div className="loading">Loading...</div>;
   };
-  return <div>{team ? loaded() : loading()}</div>;
+  return <div>{data ? loaded() : loading()}</div>;
 };
 
 export default Index;

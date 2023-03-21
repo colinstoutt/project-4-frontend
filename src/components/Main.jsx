@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Index from "../pages/Index";
-// import LoginPage from "../pages/LoginPage";
-// import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/LoginPage";
+import SignupPage from "../pages/SignupPage";
 import Roster from "../pages/Roster";
 import AddPlayer from "../pages/AddPlayer";
 import EditPlayer from "../pages/EditPlayer";
@@ -13,56 +13,105 @@ import RecruitShow from "../pages/EditRecruit";
 import EditTeam from "../pages/EditTeam";
 import AddGame from "../pages/AddGame";
 import EditGame from "../pages/EditGame";
-// import ProtectedRoute from "../components/Protected-Route";
+
+import ProtectedRoute from "../components/Protected-Route";
+import { getToken } from "../services/tokenService";
 
 const Main = (props) => {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<Index team={props.team} />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute user={props.user}>
+              <Index data={props.data} />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/roster"
-          element={<Roster team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <Roster data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="roster/add"
-          element={<AddPlayer team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <AddPlayer data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/roster/:id"
-          element={<EditPlayer team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <EditPlayer data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/schedule"
-          element={<Schedule team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <Schedule data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/schedule/add"
-          element={<AddGame team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <AddGame data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/schedule/:id"
-          element={<EditGame team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <EditGame data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/recruitment"
-          element={<Recruitment team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <Recruitment data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/recruitment/add"
-          element={<AddRecruit team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <AddRecruit data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/recruitment/:id"
-          element={<RecruitShow team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <RecruitShow data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
         <Route
           path="/edit-team"
-          element={<EditTeam team={props.team} getTeam={props.getTeam} />}
+          element={
+            <ProtectedRoute user={props.user}>
+              <EditTeam data={props.data} getData={props.getData} />
+            </ProtectedRoute>
+          }
         />
 
-        {/* <Route path="/login" element={<LoginPage {...props} />} />
-        <Route path="/signup" element={<SignupPage {...props} />} /> */}
+        <Route path="/login" element={<LoginPage {...props} />} />
+        <Route path="/signup" element={<SignupPage {...props} />} />
       </Routes>
     </main>
   );

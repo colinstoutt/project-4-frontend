@@ -1,77 +1,79 @@
-// import { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import "../scss/auth.scss";
-// import getCookie from "../components/CSRFToken";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../services/signupService";
+import "../scss/auth.scss";
 
-// function LoginPage({ userState, setUserState }) {
-//   const navigate = useNavigate();
-//   const csrftoken = getCookie("csrftoken");
+function LoginPage({ handleSignupAndLogIn, updateMessage }) {
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+  });
 
-//   const [form, setForm] = useState({
-//     username: "",
-//     password: "",
-//   });
+  const navigate = useNavigate();
 
-//   console.log(userState);
+  function handleChange(e) {
+    setFormState((prevState) => ({
+      // Using ES2015 Computed Property Names
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
 
-//   const login = async (person) => {
-//     await fetch("http://localhost:8000/auth/login/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       credentials: "include", // <- THIS
-//       body: JSON.stringify({
-//         username: form.username,
-//         password: form.password,
-//       }),
-//     });
-//     setUserState(csrftoken);
-//     console.log(userState);
-//   };
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await login(formState);
+      handleSignupAndLogIn();
+      navigate("/", { replace: true });
+    } catch (err) {
+      // Use something other than an alert in production code
+      alert("Invalid Credentials!");
+    }
+  }
 
-//   function handleChange(e) {
-//     setForm((prevState) => ({
-//       ...prevState,
-//       [e.target.name]: e.target.value,
-//     }));
-//   }
+  return (
+    <div scroll="no" className="auth">
+      <h1 className="auth__heading">My Team Manager</h1>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <legend className="auth-form__title">Sign In</legend>
+        <label className="auth-form__label" htmlFor="email">
+          Email
+        </label>
+        <br />
+        <input
+          type="email"
+          placeholder="Email"
+          value={formState.email}
+          name="email"
+          onChange={handleChange}
+          className="auth-form__input"
+        />
+        <br />
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     login(form);
-//     navigate("/", { replace: true });
-//   }
+        <label className="auth-form__label" htmlFor="password">
+          Password
+        </label>
+        <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={formState.password}
+          name="password"
+          onChange={handleChange}
+          className="auth-form__input"
+        />
+        <div className="form-controls">
+          <button className="auth-form__button">Sign In</button>
+        </div>
+        <p className="auth-form__Link">
+          Don't have an account?{" "}
+          <Link className="auth-form__Link-btn" to="/signup">
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
 
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit} className="auth__form">
-//         <legend>Sign In</legend>
-//         <label htmlFor="username">Username</label>
-//         <br />
-//         <input
-//           type="text"
-//           value={form.username}
-//           name="username"
-//           onChange={handleChange}
-//           className="auth__form-input"
-//         />
-//         <br />
-//         <label htmlFor="password">Password</label>
-//         <br />
-//         <input
-//           type="password"
-//           value={form.password}
-//           name="password"
-//           onChange={handleChange}
-//           className="auth__form-input"
-//         />
-//         <br />
-//         <button>Sign In</button>
-//       </form>
-//       <Link to="/signup">Signup</Link>
-//     </div>
-//   );
-// }
-
-// export default LoginPage;
+export default LoginPage;

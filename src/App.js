@@ -1,34 +1,56 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { getUserFromToken } from "./services/tokenService";
+import { logout } from "./services/signupService";
+import ProtectedRoute from "./components/Protected-Route";
+
 import Main from "./components/Main";
 import Nav from "./components/Nav";
 
 function App(props) {
-  const [team, setTeam] = useState(null);
-  const URL = "http://localhost:8000/manager/team/12/";
+  // setting userState
+  const [userState, setUserState] = useState({ user: getUserFromToken() });
+
+  function handleSignupAndLogIn() {
+    let user = getUserFromToken();
+    console.log("****************" + user);
+    setUserState({ user: getUserFromToken() });
+  }
+
+  function handleLogout() {
+    logout();
+    setUserState({ user: null });
+  }
+
+  // fetching api
+  const [data, setData] = useState(null);
+  const URL = "http://localhost:3001/";
 
   // INDEX
-  const getTeam = async () => {
-    const data = await fetch(URL).then((res) => res.json());
-    setTeam(data);
+  const getData = async () => {
+    const fetchData = await fetch(URL).then((res) => res.json());
+    setData(fetchData);
   };
 
   useEffect(() => {
-    getTeam();
+    getData();
   }, []);
 
   return (
-    <div
-      className="App"
-      style={
-        team
-          ? { borderTop: `12px solid ${team.team_color}` }
-          : { borderTop: `12px solid black` }
-      }
-    >
-      <Nav team={team} />
+    <div className="App">
+      {userState.user === null ? (
+        <div></div>
+      ) : (
+        <Nav data={data} handleLogout={handleLogout} />
+      )}
       <div className="main-container">
-        <Main team={team} setTeam={setTeam} getTeam={getTeam} />
+        <Main
+          data={data}
+          setData={setData}
+          getData={getData}
+          user={userState.user}
+          handleSignupAndLogIn={handleSignupAndLogIn}
+        />
       </div>
     </div>
   );
