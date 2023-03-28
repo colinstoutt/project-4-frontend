@@ -24,7 +24,7 @@ function App(props) {
 
   // fetching api
   const [data, setData] = useState(null);
-  const URL = "http://localhost:3001/";
+  const URL = "http://localhost:3002/";
 
   // INDEX
   const getData = async () => {
