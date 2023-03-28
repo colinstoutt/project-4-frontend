@@ -2,19 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "../scss/AddPlayer.scss";
+import { getUserFromToken } from "../services/tokenService";
+const user = getUserFromToken();
 
-const AddPlayer = ({ team, getTeam }) => {
-  const URL = "http://localhost:8000/manager/player/";
+const AddPlayer = ({ data, getData }) => {
+  const URL = "http://localhost:3002/manager/player/";
   const navigate = useNavigate();
+  const teams = data && data.data;
+  const userTeam = teams && teams.filter((team) => team.user === user._id);
   const [playerForm, setPlayerForm] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     contact: "",
     age: "",
     number: "",
     position: "",
     status: "",
-    team_id: 12,
+    team: userTeam[0],
   });
 
   async function createPlayer(form) {
@@ -25,7 +29,7 @@ const AddPlayer = ({ team, getTeam }) => {
       },
       body: JSON.stringify(form),
     });
-    getTeam();
+    getData();
   }
 
   const handleChange = (e) => {
@@ -38,14 +42,14 @@ const AddPlayer = ({ team, getTeam }) => {
     e.preventDefault();
     createPlayer(playerForm);
     setPlayerForm({
-      first_name: "",
-      last_name: "",
+      firstName: "",
+      lastName: "",
       contact: "",
       age: "",
       number: "",
       position: "",
       status: "",
-      team_id: 12,
+      team: userTeam[0],
     });
     navigate("/roster");
   };
@@ -55,9 +59,12 @@ const AddPlayer = ({ team, getTeam }) => {
       <div className="playerAdd">
         <h1 className="playerAdd__heading">Add Player</h1>
         <div className="playerAdd__line-divide"></div>
-        <div className="playerAdd__container">
+        <div
+          className="playerAdd__container"
+          style={{ borderLeft: `10px solid ${userTeam[0].team_color}` }}
+        >
           <form onSubmit={handleSubmit}>
-            <label className="playerAdd__label" htmlFor="first_name">
+            <label className="playerAdd__label" htmlFor="firstName">
               First Name
             </label>
             <br />
@@ -65,12 +72,12 @@ const AddPlayer = ({ team, getTeam }) => {
               className="playerAdd__input"
               onChange={handleChange}
               type="text"
-              name="first_name"
-              value={playerForm.first_name}
+              name="firstName"
+              value={playerForm.firstName}
               size="25"
             />
             <br />
-            <label className="playerAdd__label" htmlFor="last_name">
+            <label className="playerAdd__label" htmlFor="lastName">
               Last Name
             </label>
             <br />
@@ -78,8 +85,8 @@ const AddPlayer = ({ team, getTeam }) => {
               className="playerAdd__input"
               onChange={handleChange}
               type="text"
-              name="last_name"
-              value={playerForm.last_name}
+              name="lastName"
+              value={playerForm.lastName}
               size="25"
             />
             <br />
@@ -153,14 +160,6 @@ const AddPlayer = ({ team, getTeam }) => {
               <option value="Inactive">Inactive</option>
               <option value="IR">IR</option>
             </select>
-            {/* <input
-          className="playerAdd__input"
-          onChange={handleChange}
-          type="text"
-          name="status"
-          value={playerForm.status}
-          size="25"
-        /> */}
             <br />
             <button type="submit" className="playerAdd__submit">
               Submit
@@ -174,7 +173,7 @@ const AddPlayer = ({ team, getTeam }) => {
     return <h1>Loading...</h1>;
   };
 
-  return <div>{team ? loaded() : loading()}</div>;
+  return <div>{data ? loaded() : loading()}</div>;
 };
 
 export default AddPlayer;

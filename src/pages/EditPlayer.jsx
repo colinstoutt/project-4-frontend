@@ -2,25 +2,27 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../scss/EditPlayer.scss";
+import { getUserFromToken } from "../services/tokenService";
+const user = getUserFromToken();
 
-const EditPlayer = ({ team, getTeam }) => {
-  const URL = "http://localhost:8000/manager/player/";
-
+const EditPlayer = ({ data, getData }) => {
+  console.log(data);
+  const URL = "http://localhost:3002/manager/player/";
   const { id } = useParams();
   const navigate = useNavigate();
-  const player = team.players.find((player) => player.id === +id);
+  const player = data && data.players.find((player) => player._id === id);
   const [editForm, setEditForm] = useState(player);
   console.log(player, id);
 
   async function updatePlayer(form, id) {
-    await fetch(`${URL}${id}/`, {
-      method: "PATCH",
+    await fetch(`${URL}${id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(form),
     });
-    getTeam();
+    getData();
   }
   const handleChange = (e) => {
     setEditForm({
@@ -35,16 +37,19 @@ const EditPlayer = ({ team, getTeam }) => {
   };
 
   const loaded = () => {
+    const teams = data.data;
+    const userTeam = teams.filter((team) => team.user === user._id);
+
     return (
       <div className="playerShow">
         <h1 className="playerShow__heading">Edit Player</h1>
         <div className="playerShow__line-divide"></div>
         <div
           className="playerShow__recruit-container"
-          style={{ borderLeft: `10px solid ${team.team_color}` }}
+          style={{ borderLeft: `10px solid ${userTeam[0].team_color}` }}
         >
           <div className="playerShow__name">
-            {player.first_name} {player.last_name}
+            {player.firstName} {player.lastName}
           </div>
           <form onSubmit={handleSubmit}>
             <label className="playerShow__label" htmlFor="number">
@@ -130,7 +135,7 @@ const EditPlayer = ({ team, getTeam }) => {
   const loading = () => {
     return <h1>Loading...</h1>;
   };
-  return <div>{team ? loaded() : loading()}</div>;
+  return <div>{data ? loaded() : loading()}</div>;
 };
 
 export default EditPlayer;
