@@ -7,7 +7,7 @@ const Recruit = (props) => {
   const URL = "http://localhost:8000/manager/recruit/";
   async function deleteRecruit(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
-    console.log(id);
+    // console.log(id);
     props.getTeam();
   }
   return (

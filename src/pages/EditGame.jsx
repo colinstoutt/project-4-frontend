@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../scss/EditGame.scss";
 import { useNavigate, useParams } from "react-router";
 
@@ -10,7 +10,7 @@ const GameEdit = ({ team, getTeam }) => {
   const navigate = useNavigate();
   const game = team.games.find((game) => game.id === +id);
   const [editForm, setEditForm] = useState(game);
-  console.log(game);
+  // console.log(game);
 
   async function updateGame(form, id) {
     await fetch(`${URL}${id}/`, {

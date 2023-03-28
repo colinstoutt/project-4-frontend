@@ -10,7 +10,7 @@ const RecruitShow = ({ team, getTeam, updateRecruit }) => {
   const navigate = useNavigate();
   const recruit = team.recruits.find((recruit) => recruit.id === +id);
   const [editForm, setEditForm] = useState(recruit);
-  console.log(recruit, id);
+  // console.log(recruit, id);
 
   async function updateRecruit(form, id) {
     await fetch(`${URL}${id}/`, {

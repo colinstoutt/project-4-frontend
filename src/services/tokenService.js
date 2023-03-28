@@ -13,7 +13,7 @@ function setToken(token) {
 function getUserFromToken() {
   const token = getToken();
   const user = token ? JSON.parse(atob(token.split(".")[1])).user : null;
-  console.log(user);
+  // console.log(user);
   return user;
 }
 

@@ -9,7 +9,7 @@ const Game = (props) => {
   const URL = "http://localhost:8000/manager/game/";
   async function deleteGame(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
-    console.log(id);
+    // console.log(id);
     props.getTeam();
     navigate("/schedule");
   }
