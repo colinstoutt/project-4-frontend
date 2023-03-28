@@ -3,10 +3,10 @@ import "../scss/Schedule.scss";
 import Game from "../components/Game";
 import { Link } from "react-router-dom";
 
-const Schedule = ({ team, getTeam }) => {
+const Schedule = ({ data, getTeam }) => {
   // const sortByDate = () => {};
   const loaded = () => {
-    team.games.sort(function (a, b) {
+    data.games.sort(function (a, b) {
       return Date.parse(a.date) - Date.parse(b.date);
     });
 
@@ -19,7 +19,7 @@ const Schedule = ({ team, getTeam }) => {
           </Link>
         </div>
         <div className="schedule__line-divide"></div>
-        {team.games.map((item) => {
+        {data.games.map((item) => {
           return (
             <Game
               key={item.id}
@@ -29,7 +29,7 @@ const Schedule = ({ team, getTeam }) => {
               time={item.time}
               homeTeam={item.home_team}
               awayTeam={item.away_team}
-              team={team}
+              data={data}
               getTeam={getTeam}
             />
           );
@@ -41,7 +41,7 @@ const Schedule = ({ team, getTeam }) => {
     return <h1>Loading...</h1>;
   };
 
-  return <div>{team ? loaded() : loading()}</div>;
+  return <div>{data ? loaded() : loading()}</div>;
 };
 
 export default Schedule;
