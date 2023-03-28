@@ -11,6 +11,7 @@ import Recruitment from "../pages/Recruitment";
 import AddRecruit from "../pages/AddRecruit";
 import RecruitShow from "../pages/EditRecruit";
 import EditTeam from "../pages/EditTeam";
+import CreateTeam from "../pages/CreateTeam";
 import AddGame from "../pages/AddGame";
 import EditGame from "../pages/EditGame";
 
@@ -26,6 +27,14 @@ const Main = (props) => {
           element={
             <ProtectedRoute user={props.user}>
               <Index data={props.data} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/team/create"
+          element={
+            <ProtectedRoute user={props.user}>
+              <CreateTeam data={props.data} getData={props.getData} />
             </ProtectedRoute>
           }
         />

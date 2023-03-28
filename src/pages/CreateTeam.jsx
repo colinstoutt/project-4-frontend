@@ -2,7 +2,7 @@ import React from "react";
 import "../scss/EditTeam.scss";
 import { useState } from "react";
 
-const EditTeam = ({ team, getTeam }) => {
+const CreateTeam = ({ team, getTeam }) => {
   getTeam();
   const URL = "http://localhost:8000/manager/team/12/";
 
@@ -122,4 +122,4 @@ const EditTeam = ({ team, getTeam }) => {
   return <div>{team ? loaded() : loading()}</div>;
 };
 
-export default EditTeam;
+export default CreateTeam;
