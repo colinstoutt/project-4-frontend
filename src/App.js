@@ -1,9 +1,7 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getUserFromToken } from "./services/tokenService";
 import { logout } from "./services/signupService";
-import ProtectedRoute from "./components/Protected-Route";
-
 import Main from "./components/Main";
 import Nav from "./components/Nav";
 

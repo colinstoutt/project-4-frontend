@@ -46,14 +46,18 @@ const Main = (props) => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="roster/add"
           element={
             <ProtectedRoute user={props.user}>
-              <AddPlayer data={props.data} getData={props.getData} />
+              <AddPlayer
+                data={props.data}
+                getData={props.getData}
+                setData={props.setData}
+              />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/roster/:id"
           element={

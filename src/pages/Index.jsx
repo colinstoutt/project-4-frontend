@@ -1,8 +1,9 @@
 import "../scss/Index.scss";
 import { getUserFromToken } from "../services/tokenService";
+import AddPlayerWindow from "../components/AddPlayerWindow";
 const user = getUserFromToken();
 
-const Index = ({ data }) => {
+const Index = ({ data, getData }) => {
   const loaded = () => {
     const teams = data.data;
     const userTeam = teams.filter((team) => team.user === user._id);
@@ -88,15 +89,3 @@ export default Index;
 //   }
 // }
 // const { date, time, home_team, away_team } = getUpcomingGame();
-
-// data.players.forEach((player) => {
-//   if (player.status === "Active") {
-//     activeCount++;
-//   }
-//   if (player.status === "Inactive") {
-//     inactiveCount++;
-//   }
-//   if (player.status === "IR") {
-//     irCount++;
-//   }
-// });
