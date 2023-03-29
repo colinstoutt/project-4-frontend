@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../scss/Roster.scss";
-// import { Link } from "react-router-dom";
 import AddPlayerWindow from "../components/AddPlayerWindow";
 import EditPlayerWindow from "../components/EditPlayerWindow";
 import Player from "../components/Player";
@@ -8,15 +7,15 @@ import { getUserFromToken } from "../services/tokenService";
 const user = getUserFromToken();
 
 const Roster = ({ data, getData }) => {
+  const [toggleAdd, setToggleAdd] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(true);
+
   const URL = "http://localhost:3002/manager/player/";
   async function deletePlayer(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     // console.log(id);
     getData();
   }
-
-  const [toggleAdd, setToggleAdd] = useState(false);
-  const [toggleEdit, setToggleEdit] = useState(true);
 
   const loaded = () => {
     const teams = data.data;
@@ -74,13 +73,6 @@ const Roster = ({ data, getData }) => {
 
         <div className="roster__heading-container">
           <h1 className="roster__heading">Roster</h1>
-
-          <button
-            className="add-button"
-            onClick={() => setToggleAdd(!toggleAdd)}
-          >
-            Add Player
-          </button>
         </div>
         <div className="roster__line-divide"></div>
         <table className="roster__table">

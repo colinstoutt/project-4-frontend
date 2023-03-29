@@ -1,16 +1,16 @@
-.add__window {
-  position: fixed;
+.recruit__window {
   z-index: 999;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
   border-radius: 0 10px 10px 0;
-  width: 600px;
-  height: 280px;
+  width: 750px;
+  height: 480px;
+  background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.playerAdd {
+.recruitAdd {
   &__heading {
     font-size: 1.5rem;
     margin: 0.8rem 0 0.8rem 1rem;
@@ -34,8 +34,10 @@
   &__input {
     margin: 0.2rem 0.5rem 0.5rem 0;
     padding: 0 0.2rem;
+    &:first-of-type {
+      margin-top: 2rem;
+    }
   }
-
   &__submit {
     margin: 1rem 0;
     padding: 0.3rem 1rem;

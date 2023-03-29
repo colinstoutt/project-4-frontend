@@ -96,7 +96,7 @@ const EditPlayerWindow = ({ userTeam, data, getData, setToggleEdit }) => {
             name="age"
             placeholder="Age"
             value={editForm.age}
-            size="25"
+            size="5"
           />
           <input
             className="playerAdd__input"

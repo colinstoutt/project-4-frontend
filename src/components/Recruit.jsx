@@ -4,19 +4,19 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 
 const Recruit = (props) => {
-  const URL = "http://localhost:8000/manager/recruit/";
+  const URL = "http://localhost:3002/manager/recruit/";
   async function deleteRecruit(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     // console.log(id);
-    props.getTeam();
+    props.getData();
   }
   return (
     <div
       className="recruit"
-      style={{ borderLeft: `10px solid ${props.team.team_color}` }}
+      style={{ borderLeft: `10px solid ${props.userTeam[0].team_color}` }}
     >
       <h1 className="recruit__heading">
-        {props.first_name} {props.last_name}
+        {props.firstName} {props.lastName}
         <Link
           className="recruitment__show-link"
           to={`/recruitment/${props.id}/`}

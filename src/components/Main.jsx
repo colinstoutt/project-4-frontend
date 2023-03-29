@@ -4,15 +4,12 @@ import Index from "../pages/Index";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import Roster from "../pages/Roster";
-import AddPlayer from "../pages/AddPlayer";
 import EditPlayer from "../pages/EditPlayer";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
-import AddRecruit from "../pages/AddRecruit";
 import RecruitShow from "../pages/EditRecruit";
 import EditTeam from "../pages/EditTeam";
 import CreateTeam from "../pages/CreateTeam";
-import AddGame from "../pages/AddGame";
 import EditGame from "../pages/EditGame";
 
 import ProtectedRoute from "../components/Protected-Route";
@@ -46,18 +43,6 @@ const Main = (props) => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
-          path="roster/add"
-          element={
-            <ProtectedRoute user={props.user}>
-              <AddPlayer
-                data={props.data}
-                getData={props.getData}
-                setData={props.setData}
-              />
-            </ProtectedRoute>
-          }
-        /> */}
         <Route
           path="/roster/:id"
           element={
@@ -75,14 +60,6 @@ const Main = (props) => {
           }
         />
         <Route
-          path="/schedule/add"
-          element={
-            <ProtectedRoute user={props.user}>
-              <AddGame data={props.data} getData={props.getData} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/schedule/:id"
           element={
             <ProtectedRoute user={props.user}>
@@ -95,14 +72,6 @@ const Main = (props) => {
           element={
             <ProtectedRoute user={props.user}>
               <Recruitment data={props.data} getData={props.getData} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/recruitment/add"
-          element={
-            <ProtectedRoute user={props.user}>
-              <AddRecruit data={props.data} getData={props.getData} />
             </ProtectedRoute>
           }
         />

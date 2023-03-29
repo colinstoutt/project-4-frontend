@@ -1,39 +1,65 @@
 import React from "react";
+import { useState } from "react";
 import "../scss/Schedule.scss";
 import Game from "../components/Game";
 import { Link } from "react-router-dom";
+import AddGameWindow from "../components/AddGameWindow";
+import { getUserFromToken } from "../services/tokenService";
+const user = getUserFromToken();
 
-const Schedule = ({ data, getTeam }) => {
-  // const sortByDate = () => {};
+const Schedule = ({ data, getData }) => {
+  const [toggleAddGame, setToggleAddGame] = useState(false);
+  const [toggleEditGame, setToggleEditGame] = useState(false);
+
   const loaded = () => {
+    const teams = data.data;
+    const userTeam = teams.filter((team) => team.user === user._id);
     data.games.sort(function (a, b) {
       return Date.parse(a.date) - Date.parse(b.date);
     });
 
     return (
       <div className="schedule">
+        {toggleAddGame ? (
+          <AddGameWindow
+            teams={teams}
+            userTeam={userTeam}
+            data={data}
+            getData={getData}
+            setToggleAddGame={setToggleAddGame}
+          />
+        ) : (
+          <></>
+        )}
         <div className="schedule__heading-container">
           <h1 className="schedule__heading">Schedule</h1>
-          <Link to="/schedule/add">
-            <button className="add-button">Add Game</button>
-          </Link>
+          <button
+            className="add-button"
+            onClick={() => setToggleAddGame(!toggleAddGame)}
+          >
+            Add Game
+          </button>
         </div>
         <div className="schedule__line-divide"></div>
-        {data.games.map((item) => {
-          return (
-            <Game
-              key={item.id}
-              id={item.id}
-              location={item.location}
-              date={item.date}
-              time={item.time}
-              homeTeam={item.home_team}
-              awayTeam={item.away_team}
-              data={data}
-              getTeam={getTeam}
-            />
-          );
-        })}
+        {data.games
+          .filter((game) => game.team === userTeam[0]._id)
+          .map((item) => {
+            return (
+              <Game
+                key={item.id}
+                id={item._id}
+                location={item.location}
+                date={item.date}
+                time={item.time}
+                address={item.address}
+                homeTeam={item.homeTeam}
+                awayTeam={item.awayTeam}
+                data={data}
+                getData={getData}
+                setToggleEditGame={setToggleEditGame}
+              />
+            );
+          })}
       </div>
     );
   };

@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "../scss/AddPlayerWindow.scss";
-import { getUserFromToken } from "../services/tokenService";
-const user = getUserFromToken();
 
 const AddPlayerWindow = ({ userTeam, getData, setToggleAdd }) => {
   const URL = "http://localhost:3002/manager/player/";
@@ -108,7 +106,7 @@ const AddPlayerWindow = ({ userTeam, getData, setToggleAdd }) => {
             name="age"
             placeholder="Age"
             value={playerForm.age}
-            size="25"
+            size="5"
           />
           <input
             className="playerAdd__input"

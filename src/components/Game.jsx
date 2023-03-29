@@ -3,30 +3,37 @@ import "../scss/Game.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import { getUserFromToken } from "../services/tokenService";
+const user = getUserFromToken();
 
 const Game = (props) => {
+  const teams = props.data.data;
+  const userTeam = teams.filter((team) => team.user === user._id);
+
   const navigate = useNavigate();
-  const URL = "http://localhost:8000/manager/game/";
+  const URL = "http://localhost:3002/manager/game/";
   async function deleteGame(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     // console.log(id);
-    props.getTeam();
+    props.getData();
     navigate("/schedule");
   }
 
   return (
     <div
       className="game"
-      style={{ borderLeft: `10px solid ${props.team.team_color}` }}
+      style={{ borderLeft: `10px solid ${userTeam[0].team_color}` }}
     >
       <div className="game__time">
-        {props.date} at {props.time}
+        {props.date.slice(0, 10)} at{" "}
+        <span className="game__time-time">{props.time}</span>
       </div>
       <div className="game__matchup">
         <h1>
           {props.awayTeam} @ {props.homeTeam}{" "}
           <Link to={`/schedule/${props.id}/`}>
             <EditIcon
+              onClick={() => props.setToggleEditGame(true)}
               className="schedule__edit-icon"
               sx={{
                 fontSize: "1rem",
@@ -37,7 +44,9 @@ const Game = (props) => {
         </h1>
       </div>
       <div className="game__location-del">
-        <div className="game__location">{props.location}</div>
+        <div className="game__location">
+          {props.location} | {props.address}
+        </div>
         <button onClick={() => deleteGame(props.id)} className="game__delete">
           Delete
         </button>
