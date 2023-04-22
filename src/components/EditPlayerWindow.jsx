@@ -9,7 +9,8 @@ const EditPlayerWindow = ({ userTeam, data, getData, setToggleEdit }) => {
   const URL = "http://localhost:3002/manager/player/";
   const { id } = useParams();
   const navigate = useNavigate();
-  const player = data && data.players.find((player) => player._id === id);
+  const team = data.data;
+  const player = data.players.find((player) => player._id === id);
   const [editForm, setEditForm] = useState(player);
   console.log(player, id);
 
@@ -43,7 +44,7 @@ const EditPlayerWindow = ({ userTeam, data, getData, setToggleEdit }) => {
     <div
       className="add__window"
       style={{
-        borderLeft: `10px solid ${userTeam[0].team_color}`,
+        borderLeft: `10px solid ${team[0].team_color}`,
       }}
     >
       <h1 className="playerAdd__heading">Edit Player</h1>

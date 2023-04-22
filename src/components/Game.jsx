@@ -3,18 +3,15 @@ import "../scss/Game.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
-import { getUserFromToken } from "../services/tokenService";
-const user = getUserFromToken();
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
 const Game = (props) => {
-  const teams = props.data.data;
-  const userTeam = teams.filter((team) => team.user === user._id);
-
+  const team = props.data.data;
   const navigate = useNavigate();
   const URL = "http://localhost:3002/manager/game/";
   async function deleteGame(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
-    // console.log(id);
     props.getData();
     navigate("/schedule");
   }
@@ -22,7 +19,7 @@ const Game = (props) => {
   return (
     <div
       className="game"
-      style={{ borderLeft: `10px solid ${userTeam[0].team_color}` }}
+      style={{ borderLeft: `10px solid ${team[0].team_color}` }}
     >
       <div className="game__time">
         {props.date.slice(0, 10)} at{" "}
@@ -34,7 +31,7 @@ const Game = (props) => {
           <Link to={`/schedule/${props.id}/`}>
             <EditIcon
               onClick={() => props.setToggleEditGame(true)}
-              className="schedule__edit-icon"
+              className="edit-icon"
               sx={{
                 fontSize: "1rem",
                 marginLeft: "-0.1rem",

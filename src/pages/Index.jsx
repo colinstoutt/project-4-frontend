@@ -2,13 +2,10 @@ import "../scss/Index.scss";
 import { getUserFromToken } from "../services/tokenService";
 import AddPlayerWindow from "../components/AddPlayerWindow";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
-const Index = ({ data, getData }) => {
-  useEffect(() => {
-    getData();
-  }, []);
-
+const Index = ({ data }) => {
   const navigate = useNavigate();
 
   const loaded = () => {
@@ -35,18 +32,27 @@ const Index = ({ data, getData }) => {
     return (
       <div className="index">
         <h1 className="index__heading">
-          {team[0].city} {team[0].mascot}
+          {team[0].city} {team[0].mascot}{" "}
+          <Link to={`/team/${team[0]._id}`}>
+            <EditIcon
+              className="edit-icon"
+              sx={{
+                fontSize: "1.2rem",
+                marginLeft: "-0.1rem",
+              }}
+            />
+          </Link>
         </h1>
         <div className="index__line-divide"></div>
         <div
           className="index__container"
           style={{ borderLeft: `10px solid ${team[0].team_color}` }}
         >
-          <div className="index__game">
+          {/* <div className="index__game">
             <div className="index__subtitle">Upcoming game</div>
             <div className="index__game-matchup">away_team @ home_team</div>
             <div className="index__game-datetime">date time</div>
-          </div>
+          </div> */}
           <div className="index__subtitle">Roster</div>
           <div className="index__roster">
             <div className="index__roster-status">
