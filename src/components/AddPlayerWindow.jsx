@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "../scss/AddPlayerWindow.scss";
+import config from "../config";
 
 const AddPlayerWindow = ({ data, getData, setToggleAdd }) => {
-  const URL = "http://localhost:3002/manager/player/";
+  const URL = `${config.PROD.URL}manager/player/`;
 
   const team = data.data;
   const navigate = useNavigate();

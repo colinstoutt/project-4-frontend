@@ -3,6 +3,8 @@ import "../scss/Roster.scss";
 import AddPlayerWindow from "../components/AddPlayerWindow";
 import EditPlayerWindow from "../components/EditPlayerWindow";
 import Player from "../components/Player";
+import config from "../config";
+
 // import { getUserFromToken } from "../services/tokenService";
 // const user = getUserFromToken();
 
@@ -10,7 +12,7 @@ const Roster = ({ data, getData }) => {
   const [toggleAdd, setToggleAdd] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(true);
 
-  const URL = "http://localhost:3002/manager/player/";
+  const URL = `${config.PROD.URL}manager/player/`;
   async function deletePlayer(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     // console.log(id);

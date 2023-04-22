@@ -2,10 +2,11 @@ import React from "react";
 import { useState } from "react";
 import "../scss/AddGameWindow.scss";
 import { useNavigate } from "react-router-dom";
+import config from "../config";
 
 const AddGameWindow = ({ data, getData, setToggleAddGame }) => {
   const navigate = useNavigate();
-  const URL = "http://localhost:3002/manager/game/";
+  const URL = `${config.PROD.URL}manager/game/`;
   const team = data.data;
   const [gameForm, setGameForm] = useState({
     location: "",

@@ -2,9 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../scss/AddPlayerWindow.scss";
+import config from "../config";
 
 const EditGameWindow = ({ data, getData, setToggleEditGame }) => {
-  const URL = "http://localhost:3002/manager/game/";
+  const URL = `${config.PROD.URL}manager/game/`;
   const { id } = useParams();
   const navigate = useNavigate();
   const team = data.data;

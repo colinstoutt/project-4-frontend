@@ -1,9 +1,9 @@
 const config = {
   PROD: {
-    //   URL: "https://exercise-tracker.herokuapp.com/",
+    URL: "https://teammanagerbackend.herokuapp.com/",
   },
   DEV: {
-    URL: "http://localhost:3001",
+    URL: "http://localhost:3002",
   },
 };
 

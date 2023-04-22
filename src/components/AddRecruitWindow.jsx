@@ -2,11 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import "../scss/AddRecruitWindow.scss";
+import config from "../config";
+
 // import { getUserFromToken } from "../services/tokenService";
 // const user = getUserFromToken();
 
 const AddRecruitWindow = ({ data, getData, setToggleAddRecruit }) => {
-  const URL = "http://localhost:3002/manager/recruit/";
+  const URL = `${config.PROD.URL}manager/recruit/`;
   const team = data.data;
   const navigate = useNavigate();
   const [recruitForm, setRecruitForm] = useState({

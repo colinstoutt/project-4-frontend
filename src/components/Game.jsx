@@ -3,13 +3,15 @@ import "../scss/Game.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import config from "../config";
+
 // import { getUserFromToken } from "../services/tokenService";
 // const user = getUserFromToken();
 
 const Game = (props) => {
   const team = props.data.data;
   const navigate = useNavigate();
-  const URL = "http://localhost:3002/manager/game/";
+  const URL = `${config.PROD.URL}manager/game/`;
   async function deleteGame(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     props.getData();

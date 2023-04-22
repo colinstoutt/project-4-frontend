@@ -2,10 +2,11 @@ import React from "react";
 import "../scss/EditTeam.scss";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
+import config from "../config";
 
 const EditTeamWindow = ({ data, getData, setToggleEdit }) => {
   const navigate = useNavigate();
-  const URL = "http://localhost:3002/manager/team/";
+  const URL = `${config.PROD.URL}manager/team/`;
   const { id } = useParams();
   const team = data.data;
 

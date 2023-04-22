@@ -4,6 +4,7 @@ import AddPlayerWindow from "../components/AddPlayerWindow";
 import { useNavigate } from "react-router";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import config from "../config";
 
 const Index = ({ data }) => {
   const navigate = useNavigate();

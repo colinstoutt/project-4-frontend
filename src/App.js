@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 // import { logout } from "./services/signupService";
 import Main from "./components/Main";
 import Nav from "./components/Nav";
+import config from "./config";
 
 function App(props) {
   // setting userState
@@ -22,7 +23,7 @@ function App(props) {
 
   // fetching api
   const [data, setData] = useState(null);
-  const URL = "http://localhost:3002/";
+  const URL = config.PROD.URL;
   // INDEX
   const getData = async () => {
     const fetchData = await fetch(URL).then((res) => res.json());

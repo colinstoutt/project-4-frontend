@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "../scss/AddRecruit.scss";
 import { useNavigate } from "react-router";
+import config from "../config";
 
 const RecruitAdd = ({ data }) => {
-  const URL = "http://localhost:8000/manager/recruit/";
+  const URL = `${config.PROD.URL}manager/recruit/`;
   const team = data.data;
   const navigate = useNavigate();
 

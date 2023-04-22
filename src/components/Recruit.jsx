@@ -2,9 +2,10 @@ import React from "react";
 import "../scss/Recruit.scss";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import config from "../config";
 
 const Recruit = (props) => {
-  const URL = "http://localhost:3002/manager/recruit/";
+  const URL = `${config.PROD.URL}manager/recruit/`;
   const team = props.data.data;
   async function deleteRecruit(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
