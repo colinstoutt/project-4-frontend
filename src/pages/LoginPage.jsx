@@ -1,79 +1,80 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../services/signupService";
-import "../scss/auth.scss";
+// import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { login } from "../services/signupService";
+// import "../scss/auth.scss";
 
-function LoginPage({ handleSignupAndLogIn, updateMessage }) {
-  const [formState, setFormState] = useState({
-    email: "",
-    password: "",
-  });
+// function LoginPage({ handleSignupAndLogIn, updateMessage }) {
+//   const [formState, setFormState] = useState({
+//     email: "",
+//     password: "",
+//   });
 
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
-  function handleChange(e) {
-    setFormState((prevState) => ({
-      // Using ES2015 Computed Property Names
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  }
+//   function handleChange(e) {
+//     setFormState((prevState) => ({
+//       // Using ES2015 Computed Property Names
+//       ...prevState,
+//       [e.target.name]: e.target.value,
+//     }));
+//   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      await login(formState);
-      handleSignupAndLogIn();
-      navigate("/", { replace: true });
-    } catch (err) {
-      // Use something other than an alert in production code
-      alert("Invalid Credentials!");
-    }
-  }
+//   async function handleSubmit(e) {
+//     e.preventDefault();
+//     try {
+//       await login(formState);
+//       handleSignupAndLogIn();
 
-  return (
-    <div scroll="no" className="auth">
-      <h1 className="auth__heading">My Team Manager</h1>
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <legend className="auth-form__title">Sign In</legend>
-        <label className="auth-form__label" htmlFor="email">
-          Email
-        </label>
-        <br />
-        <input
-          type="email"
-          placeholder="Email"
-          value={formState.email}
-          name="email"
-          onChange={handleChange}
-          className="auth-form__input"
-        />
-        <br />
+//       navigate("/team", { replace: true });
+//     } catch (err) {
+//       // Use something other than an alert in production code
+//       alert("Invalid Credentials!");
+//     }
+//   }
 
-        <label className="auth-form__label" htmlFor="password">
-          Password
-        </label>
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={formState.password}
-          name="password"
-          onChange={handleChange}
-          className="auth-form__input"
-        />
-        <div className="form-controls">
-          <button className="auth-form__button">Sign In</button>
-        </div>
-        <p className="auth-form__Link">
-          Don't have an account?{" "}
-          <Link className="auth-form__Link-btn" to="/signup">
-            Sign Up
-          </Link>
-        </p>
-      </form>
-    </div>
-  );
-}
+//   return (
+//     <div scroll="no" className="auth">
+//       <h1 className="auth__heading">My Team Manager</h1>
+//       <form className="auth-form" onSubmit={handleSubmit}>
+//         <legend className="auth-form__title">Sign In</legend>
+//         <label className="auth-form__label" htmlFor="email">
+//           Email
+//         </label>
+//         <br />
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={formState.email}
+//           name="email"
+//           onChange={handleChange}
+//           className="auth-form__input"
+//         />
+//         <br />
 
-export default LoginPage;
+//         <label className="auth-form__label" htmlFor="password">
+//           Password
+//         </label>
+//         <br />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={formState.password}
+//           name="password"
+//           onChange={handleChange}
+//           className="auth-form__input"
+//         />
+//         <div className="form-controls">
+//           <button className="auth-form__button">Sign In</button>
+//         </div>
+//         <p className="auth-form__Link">
+//           Don't have an account?{" "}
+//           <Link className="auth-form__Link-btn" to="/signup">
+//             Sign Up
+//           </Link>
+//         </p>
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default LoginPage;

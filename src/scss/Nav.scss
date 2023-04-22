@@ -7,7 +7,7 @@
   padding: 2.5rem;
   font-size: 0.9rem;
   min-width: 213px;
-  height: 100%;
+  height: 100vh;
 
   &__logo {
     width: 6rem;
@@ -15,6 +15,7 @@
     border-radius: 3px;
     margin-bottom: 1.2rem;
     background-color: grey;
+    object-fit: cover;
   }
 
   &__link {
@@ -22,6 +23,8 @@
     text-decoration: none;
     margin-bottom: 1.2rem;
     font-weight: 200;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       text-decoration: 2px underline #4f8ff0;

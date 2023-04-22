@@ -46,7 +46,7 @@ const Recruit = (props) => {
               {props.height - Math.floor(props.height / 12) * 12}
             </td>
             <td>
-              {props.weight}
+              {props.Weight}
               <span className="lbs">lbs</span>
             </td>
             <td>{props.position}</td>

@@ -65,3 +65,6 @@ video {
   color: rgb(89, 183, 94);
   cursor: pointer;
 }
+textarea {
+  resize: none;
+}

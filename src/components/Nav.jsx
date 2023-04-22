@@ -1,63 +1,53 @@
 import "../scss/Nav.scss";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getUserFromToken } from "../services/tokenService";
-const user = getUserFromToken();
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
-const Nav = ({ data, handleLogout }) => {
+const Nav = ({ data }) => {
+  const team = data.data;
   const loaded = () => {
-    const teams = data.data;
-    const userTeam = teams.filter((team) => team.user === user._id);
-
     return (
       <div className="nav">
         <div className="nav__main-links">
-          {data ? (
-            <Link to="/edit-team">
+          <div>
+            <div>
               <img
                 className="nav__logo"
-                src={userTeam[0].logo_url}
-                alt={`${userTeam[0].city} ${userTeam[0].mascot}`}
+                src={team[0].logo_url}
+                alt={team[0].mascot}
               />
-            </Link>
-          ) : (
-            <div></div>
-          )}
-          <Link className="nav__link" to="/">
-            {data ? (
-              <span>
-                {userTeam[0].city} {userTeam[0].mascot}
-              </span>
-            ) : (
-              <div>Team Summary</div>
-            )}
-          </Link>
-          <Link className="nav__link" to="/roster">
-            <span>Roster</span>
-          </Link>
-          <Link className="nav__link" to="/schedule">
-            <span>Schedule</span>
-          </Link>
-          <Link className="nav__link" to="/recruitment">
-            <span>Recruitment</span>
-          </Link>
-          <Link to="/login">
-            <span
-              className="nav__logout nav__link"
-              onClick={() => handleLogout()}
-            >
-              Sign Out
-            </span>
-          </Link>
+              <Link className="nav__link" to="/team">
+                <span>{`${team[0].city} ${team[0].mascot}`}</span>
+              </Link>
+              <Link className="nav__link" to="/roster">
+                <span>Roster</span>
+              </Link>
+              <Link className="nav__link" to="/schedule">
+                <span>Schedule</span>
+              </Link>
+              <Link className="nav__link" to="/recruitment">
+                <span>Recruitment</span>
+              </Link>
+              <Link to="/team">
+                <span
+                  className="nav__logout nav__link"
+                  // onClick={() => handleLogout()}
+                >
+                  Sign Out
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
   };
 
   const loading = () => {
-    return <div></div>;
+    return <h1>Loading...</h1>;
   };
-
-  return <div>{data ? loaded() : loading()}</div>;
+  return data ? loaded() : loading();
 };
 
 export default Nav;

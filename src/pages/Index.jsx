@@ -1,17 +1,19 @@
 import "../scss/Index.scss";
 import { getUserFromToken } from "../services/tokenService";
 import AddPlayerWindow from "../components/AddPlayerWindow";
-const user = getUserFromToken();
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Index = ({ data, getData }) => {
-  const loaded = () => {
-    const teams = data.data;
-    const userTeam = teams.filter((team) => team.user === user._id);
-    console.log(userTeam);
+  useEffect(() => {
+    getData();
+  }, []);
 
-    let players = data.players.filter(
-      (player) => player.team === userTeam[0]._id
-    );
+  const navigate = useNavigate();
+
+  const loaded = () => {
+    let team = data.data;
+    let players = data.players;
 
     let activeCount = 0;
     let inactiveCount = 0;
@@ -28,16 +30,17 @@ const Index = ({ data, getData }) => {
         irCount++;
       }
     }
+    console.log(team[0]);
 
     return (
       <div className="index">
         <h1 className="index__heading">
-          {userTeam[0].city} {userTeam[0].mascot}
+          {team[0].city} {team[0].mascot}
         </h1>
         <div className="index__line-divide"></div>
         <div
           className="index__container"
-          style={{ borderLeft: `10px solid ${userTeam[0].team_color}` }}
+          style={{ borderLeft: `10px solid ${team[0].team_color}` }}
         >
           <div className="index__game">
             <div className="index__subtitle">Upcoming game</div>
@@ -82,7 +85,7 @@ export default Index;
 //       Math.abs(Date.parse(data.games[i].date) - Date.parse(Date())) < diff
 //     ) {
 //       diff = Math.abs(Date.parse(data.games[i].date) - Date.parse(Date()));
-//       upcomingGame = team.games[i];
+//       upcomingGame = team[0].games[i];
 //     }
 
 //     return upcomingGame;

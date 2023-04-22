@@ -91,7 +91,7 @@ const EditRecruitWindow = ({
             className="recruitAdd__input"
             type="text"
             name="age"
-            size="25"
+            size="5"
             placeholder="Age"
             value={editForm.age}
           />
@@ -101,7 +101,7 @@ const EditRecruitWindow = ({
             className="recruitAdd__input"
             type="text"
             name="height"
-            size="25"
+            size="7"
             placeholder="Height"
             value={editForm.height}
           />
@@ -111,11 +111,10 @@ const EditRecruitWindow = ({
             className="recruitAdd__input"
             type="text"
             name="weight"
-            size="25"
+            size="7"
             placeholder="Weight"
             value={editForm.weight}
           />
-          <br />
           <input
             onChange={handleChange}
             className="recruitAdd__input"
@@ -149,8 +148,8 @@ const EditRecruitWindow = ({
             onChange={handleChange}
             value={editForm.notes}
             name="notes"
-            cols="50"
-            rows="5"
+            cols="85"
+            rows="3"
             placeholder="Notes"
           ></textarea>
           <br />

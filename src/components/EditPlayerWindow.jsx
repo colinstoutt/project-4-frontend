@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../scss/AddPlayerWindow.scss";
-import { getUserFromToken } from "../services/tokenService";
-const user = getUserFromToken();
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
 const EditPlayerWindow = ({ userTeam, data, getData, setToggleEdit }) => {
   const URL = "http://localhost:3002/manager/player/";
