@@ -8,9 +8,10 @@ const Player = (props) => {
       <tr className="roster__table-tr">
         <td className="roster__table-tr-td">{props.number}</td>
         <td className="roster__table-tr-td">
-          {props.first_name} {props.last_name}{" "}
+          {props.firstName} {props.lastName}{" "}
           <Link to={`/roster/${props.id}/`}>
             <EditIcon
+              onClick={() => props.setToggleEdit(true)}
               className="roster_edit"
               sx={{
                 fontSize: "0.8rem",

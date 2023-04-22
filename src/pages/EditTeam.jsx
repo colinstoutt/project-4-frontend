@@ -1,124 +1,84 @@
-import React from "react";
-import "../scss/EditTeam.scss";
+import "../scss/Index.scss";
 import { useState } from "react";
+import { getUserFromToken } from "../services/tokenService";
+import { useNavigate } from "react-router";
+import EditTeamWindow from "../components/EditTeamWindow";
 
-const EditTeam = ({ team, getTeam }) => {
-  const URL = "http://localhost:8000/manager/team/12/";
-
-  const [teamForm, setTeamForm] = useState({
-    city: "",
-    mascot: "",
-    logo_url: "",
-    team_color: "",
-  });
-
-  async function updateTeam(form) {
-    await fetch(URL, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-    getTeam();
-  }
-
-  function handleChange(e) {
-    setTeamForm({
-      ...teamForm,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    updateTeam(teamForm);
-    setTeamForm({
-      city: "",
-      mascot: "",
-      logo_url: "",
-      team_color: "",
-    });
-  }
+const Index = ({ data, getData }) => {
+  const navigate = useNavigate();
+  const [toggleEdit, setToggleEdit] = useState(true);
 
   const loaded = () => {
-    return (
-      <div className="team">
-        <h1 className="team__heading">Edit Team</h1>
-        <div className="team__line-divide"></div>
+    let team = data.data;
+    let players = data.players;
 
-        <div className="team__form-container">
-          <form
-            onSubmit={handleSubmit}
-            className="team__form-container-form"
-            style={{ borderLeft: `10px solid ${team.team_color}` }}
-          >
-            <label className="team__form-label" htmlFor="city">
-              City
-            </label>
-            <br />
-            <input
-              onChange={handleChange}
-              className="team__form-container-input"
-              type="text"
-              name="city"
-              placeholder={team.city}
-              value={teamForm.city}
-              size="25"
-            />
-            <br />
-            <label className="team__form-container-label" htmlFor="mascot">
-              Mascot
-            </label>
-            <br />
-            <input
-              onChange={handleChange}
-              className="team__form-container-input"
-              type="text"
-              name="mascot"
-              placeholder={team.mascot}
-              value={teamForm.mascot}
-              size="25"
-            />
-            <br />
-            <label className="team__form-label" htmlFor="logo">
-              Logo <span className="team__form-input-span">(URL)</span>
-            </label>
-            <br />
-            <input
-              onChange={handleChange}
-              className="team__form-container-input"
-              type="text"
-              name="logo_url"
-              placeholder={team.logo_url}
-              value={teamForm.logo_url}
-              size="25"
-            />
-            <br />
-            <label className="team__form-label" htmlFor="team_color">
-              Team Color
-            </label>
-            <br />
-            <input
-              onChange={handleChange}
-              className="team__form-container-input"
-              type="text"
-              name="team_color"
-              placeholder={team.team_color}
-              value={teamForm.team_color}
-              size="25"
-            />
-            <br />
-            <button className="team__submit">Submit</button>
-          </form>
+    let activeCount = 0;
+    let inactiveCount = 0;
+    let irCount = 0;
+
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].status === "Active") {
+        activeCount++;
+      }
+      if (players[i].status === "Inactive") {
+        inactiveCount++;
+      }
+      if (players[i].status === "IR") {
+        irCount++;
+      }
+    }
+    console.log(team[0]);
+
+    return (
+      <div className="index">
+        {toggleEdit ? (
+          <EditTeamWindow
+            data={data}
+            getData={getData}
+            setToggleEdit={setToggleEdit}
+          />
+        ) : (
+          <div></div>
+        )}
+
+        <h1 className="index__heading">
+          {team[0].city} {team[0].mascot}{" "}
+        </h1>
+        <div className="index__line-divide"></div>
+        <div
+          className="index__container"
+          style={{ borderLeft: `10px solid ${team[0].team_color}` }}
+        >
+          {/* <div className="index__game">
+            <div className="index__subtitle">Upcoming game</div>
+            <div className="index__game-matchup">away_team @ home_team</div>
+            <div className="index__game-datetime">date time</div>
+          </div> */}
+          <div className="index__subtitle">Roster</div>
+          <div className="index__roster">
+            <div className="index__roster-status">
+              <span className="index__roster-status-title">Active</span>
+              <span className="index__roster-status-num">{activeCount}</span>
+            </div>
+            <div className="index__roster-status">
+              <span className="index__roster-status-title">Inactive</span>
+              <span className="index__roster-status-num">{inactiveCount}</span>
+            </div>
+            <div className="index__roster-status">
+              <span className="index__roster-status-title">
+                Injured Reserve
+              </span>
+              <span className="index__roster-status-num">{irCount}</span>
+            </div>
+          </div>
         </div>
       </div>
     );
   };
   const loading = () => {
-    return <h1>Loading...</h1>;
+    <div className="loading">Loading...</div>;
   };
-  return <div>{team ? loaded() : loading()}</div>;
+  return <div>{data ? loaded() : loading()}</div>;
 };
 
-export default EditTeam;
+export default Index;

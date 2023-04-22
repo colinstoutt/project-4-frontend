@@ -41,4 +41,15 @@
       cursor: pointer;
     }
   }
+  &__add-button {
+    margin: 1rem 0;
+    padding: 0.3rem 1rem;
+    border: 1px solid grey;
+    border-radius: 5px;
+    &:hover {
+      border: 1px solid rgb(89, 183, 94);
+      color: rgb(89, 183, 94);
+      cursor: pointer;
+    }
+  }
 }

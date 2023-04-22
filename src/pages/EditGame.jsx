@@ -1,105 +1,80 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import "../scss/EditGame.scss";
-import { useNavigate, useParams } from "react-router";
+// import React from "react";
+// import { useState } from "react";
+// import "../scss/Schedule.scss";
+// import Game from "../components/Game";
+// import { Link } from "react-router-dom";
+// import AddGameWindow from "../components/AddGameWindow";
+// import EditGameWindow from "../components/EditGameWindow";
 
-const GameEdit = ({ team, getTeam }) => {
-  const URL = "http://localhost:8000/manager/game/";
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const game = team.games.find((game) => game.id === +id);
-  const [editForm, setEditForm] = useState(game);
-  console.log(game);
+// const Schedule = ({ data, getData }) => {
+//   const [toggleAddGame, setToggleAddGame] = useState(false);
+//   const [toggleEditGame, setToggleEditGame] = useState(true);
 
-  async function updateGame(form, id) {
-    await fetch(`${URL}${id}/`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-    getTeam();
-  }
-  function handleChange(e) {
-    setEditForm({
-      ...editForm,
-      [e.target.name]: e.target.value,
-    });
-  }
+//   const loaded = () => {
+//     const teams = data.data;
+//     const userTeam = teams.filter((team) => team.user === user._id);
+//     data.games.sort(function (a, b) {
+//       return Date.parse(a.date) - Date.parse(b.date);
+//     });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    updateGame(editForm, id);
-    navigate("/schedule");
-  }
+//     return (
+//       <div className="schedule">
+//         {toggleAddGame ? (
+//           <AddGameWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleAddGame={setToggleAddGame}
+//           />
+//         ) : (
+//           <></>
+//         )}
+//         {toggleEditGame ? (
+//           <EditGameWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleEditGame={setToggleEditGame}
+//           />
+//         ) : (
+//           <></>
+//         )}
+//         <div className="schedule__heading-container">
+//           <h1 className="schedule__heading">Schedule</h1>
+//         </div>
+//         <div className="schedule__line-divide"></div>
+//         {data.games
+//           .filter((game) => game.team === userTeam[0]._id)
+//           .map((item) => {
+//             return (
+//               <Game
+//                 key={item.id}
+//                 id={item._id}
+//                 location={item.location}
+//                 date={item.date}
+//                 time={item.time}
+//                 address={item.address}
+//                 homeTeam={item.homeTeam}
+//                 awayTeam={item.awayTeam}
+//                 data={data}
+//                 getData={getData}
+//                 setToggleEditGame={setToggleEditGame}
+//               />
+//             );
+//           })}
+//       </div>
+//     );
+//   };
+//   const loading = () => {
+//     return <h1>Loading...</h1>;
+//   };
 
-  const loaded = () => {
-    return (
-      <div
-        className="gameShow"
-        style={{ borderLeft: `10px solid ${team.team_color}` }}
-      >
-        <h1 className="gameShow__heading">Edit Game</h1>
-        <div className="gameShow__line-divide"></div>
-        <form onSubmit={handleSubmit}>
-          <div className="game__time">
-            <input
-              onChange={handleChange}
-              value={editForm.date}
-              className="game__input"
-              type="date"
-              name="date"
-              size="11"
-            />
-            <input
-              onChange={handleChange}
-              value={editForm.time}
-              className="game__input"
-              type="text"
-              name="time"
-              size="11"
-            />
-          </div>
-          <div className="game__matchup">
-            <input
-              onChange={handleChange}
-              value={editForm.away_team}
-              className="game__input"
-              type="text"
-              name="away_team"
-              size="11"
-            />
-            @
-            <input
-              onChange={handleChange}
-              value={editForm.home_team}
-              className="game__input"
-              type="text"
-              name="home_team"
-              size="11"
-            />
-          </div>
-          <div className="game__location">
-            <input
-              onChange={handleChange}
-              value={editForm.location}
-              className="game__input"
-              type="text"
-              name="location"
-              size="20"
-            />
-          </div>
-          <button className="game__submit">Submit</button>
-        </form>
-      </div>
-    );
-  };
-  const loading = () => {
-    return <h1>Loading...</h1>;
-  };
-  return <div>{team ? loaded() : loading()}</div>;
-};
+//   return <div>{data ? loaded() : loading()}</div>;
+// };
 
-export default GameEdit;
+// export default Schedule;

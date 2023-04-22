@@ -1,75 +1,78 @@
 // import { useState } from "react";
 // import { Link, useNavigate } from "react-router-dom";
+// import { login } from "../services/signupService";
 // import "../scss/auth.scss";
-// import getCookie from "../components/CSRFToken";
 
-// function LoginPage({ userState, setUserState }) {
-//   const navigate = useNavigate();
-//   const csrftoken = getCookie("csrftoken");
-
-//   const [form, setForm] = useState({
-//     username: "",
+// function LoginPage({ handleSignupAndLogIn, updateMessage }) {
+//   const [formState, setFormState] = useState({
+//     email: "",
 //     password: "",
 //   });
 
-//   console.log(userState);
-
-//   const login = async (person) => {
-//     await fetch("http://localhost:8000/auth/login/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       credentials: "include", // <- THIS
-//       body: JSON.stringify({
-//         username: form.username,
-//         password: form.password,
-//       }),
-//     });
-//     setUserState(csrftoken);
-//     console.log(userState);
-//   };
+//   const navigate = useNavigate();
 
 //   function handleChange(e) {
-//     setForm((prevState) => ({
+//     setFormState((prevState) => ({
+//       // Using ES2015 Computed Property Names
 //       ...prevState,
 //       [e.target.name]: e.target.value,
 //     }));
 //   }
 
-//   function handleSubmit(e) {
+//   async function handleSubmit(e) {
 //     e.preventDefault();
-//     login(form);
-//     navigate("/", { replace: true });
+//     try {
+//       await login(formState);
+//       handleSignupAndLogIn();
+
+//       navigate("/team", { replace: true });
+//     } catch (err) {
+//       // Use something other than an alert in production code
+//       alert("Invalid Credentials!");
+//     }
 //   }
 
 //   return (
-//     <div>
-//       <form onSubmit={handleSubmit} className="auth__form">
-//         <legend>Sign In</legend>
-//         <label htmlFor="username">Username</label>
+//     <div scroll="no" className="auth">
+//       <h1 className="auth__heading">My Team Manager</h1>
+//       <form className="auth-form" onSubmit={handleSubmit}>
+//         <legend className="auth-form__title">Sign In</legend>
+//         <label className="auth-form__label" htmlFor="email">
+//           Email
+//         </label>
 //         <br />
 //         <input
-//           type="text"
-//           value={form.username}
-//           name="username"
+//           type="email"
+//           placeholder="Email"
+//           value={formState.email}
+//           name="email"
 //           onChange={handleChange}
-//           className="auth__form-input"
+//           className="auth-form__input"
 //         />
 //         <br />
-//         <label htmlFor="password">Password</label>
+
+//         <label className="auth-form__label" htmlFor="password">
+//           Password
+//         </label>
 //         <br />
 //         <input
 //           type="password"
-//           value={form.password}
+//           placeholder="Password"
+//           value={formState.password}
 //           name="password"
 //           onChange={handleChange}
-//           className="auth__form-input"
+//           className="auth-form__input"
 //         />
-//         <br />
-//         <button>Sign In</button>
+//         <div className="form-controls">
+//           <button className="auth-form__button">Sign In</button>
+//         </div>
+//         <p className="auth-form__Link">
+//           Don't have an account?{" "}
+//           <Link className="auth-form__Link-btn" to="/signup">
+//             Sign Up
+//           </Link>
+//         </p>
 //       </form>
-//       <Link to="/signup">Signup</Link>
 //     </div>
 //   );
 // }

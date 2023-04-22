@@ -1,174 +1,167 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import "../scss/EditRecruit.scss";
+// import React, { useState } from "react";
+// import Recruit from "../components/Recruit";
+// import "../scss/Recruitment.scss";
+// import { getUserFromToken } from "../services/tokenService";
+// import AddRecruitWindow from "../components/AddRecruitWindow";
+// import EditRecruitWindow from "../components/EditRecruitWindow";
 
-const RecruitShow = ({ team, getTeam, updateRecruit }) => {
-  const URL = "http://localhost:8000/manager/recruit/";
+// const user = getUserFromToken();
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const recruit = team.recruits.find((recruit) => recruit.id === +id);
-  const [editForm, setEditForm] = useState(recruit);
-  console.log(recruit, id);
+// const Recruitment = ({ data, getData }) => {
+//   const [toggleAddRecruit, setToggleAddRecruit] = useState(false);
+//   const [toggleEditRecruit, setToggleEditRecruit] = useState(true);
 
-  async function updateRecruit(form, id) {
-    await fetch(`${URL}${id}/`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-    getTeam();
-  }
-  const handleChange = (e) => {
-    setEditForm({
-      ...editForm,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    updateRecruit(editForm, id);
-    navigate("/recruitment");
-  };
+//   const loaded = () => {
+//     const teams = data.data;
+//     const userTeam = teams.filter((team) => team.user === user._id);
 
-  const loaded = () => {
-    return (
-      <div className="recruitShow">
-        <h1 className="recruitShow__heading">Edit Recruit</h1>
-        <div className="recruitShow__line-divide"></div>
-        <div
-          className="recruitShow__recruit-container"
-          style={{ borderLeft: `10px solid ${team.team_color}` }}
-        >
-          <div className="recruitShow__name">
-            {recruit.first_name} {recruit.last_name}
-          </div>
-          <form onSubmit={handleSubmit}>
-            <label className="recruitShow__label" htmlFor="hometown">
-              Hometown
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="hometown"
-              value={editForm.hometown}
-              size="25"
-            />
-            <br />
-            <label className="recruitShow__label" htmlFor="age">
-              Age
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="age"
-              value={editForm.age}
-              size="25"
-            />
-            <br />
+//     return (
+//       <div className="recruitment">
+//         {toggleAddRecruit ? (
+//           <AddRecruitWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleAddRecruit={setToggleAddRecruit}
+//           />
+//         ) : (
+//           <div></div>
+//         )}{" "}
+//         {toggleEditRecruit ? (
+//           <EditRecruitWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleEditRecruit={setToggleEditRecruit}
+//           />
+//         ) : (
+//           <div></div>
+//         )}
+//         <div className="recruitment__heading">
+//           <h1>Recruitment</h1>
+//         </div>
+//         <div className="recruitment__line-divide"></div>
+//         {data.recruits
+//           .filter((recruit) => recruit.team === userTeam[0]._id)
+//           .map((item) => {
+//             return (
+//               <Recruit
+//                 key={item.id}
+//                 id={item._id}
+//                 firstName={item.firstName}
+//                 lastName={item.lastName}
+//                 contact={item.contact}
+//                 age={item.age}
+//                 hometown={item.hometown}
+//                 position={item.position}
+//                 height={item.height}
+//                 weight={item.weight}
+//                 current_team={item.current_team}
+//                 notes={item.notes}
+//                 getData={getData}
+//                 data={data}
+//                 userTeam={userTeam}
+//                 toggleEditRecruit={toggleEditRecruit}
+//                 setToggleEditRecruit={setToggleEditRecruit}
+//               />
+//             );
+//           })}
+//       </div>
+//     );
+//   };
+//   const loading = () => {
+//     return <h1>Loading...</h1>;
+//   };
+//   return <div>{data ? loaded() : loading()}</div>;
+// };
 
-            <label className="recruitShow__label" htmlFor="height">
-              Height (in)
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="height"
-              value={editForm.height}
-              size="25"
-            />
-            <br />
+// export default Recruitment;
 
-            <label className="recruitShow__label" htmlFor="weight">
-              Weight (lbs)
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="weight"
-              value={editForm.weight}
-              size="25"
-            />
-            <br />
+// import React, { useState } from "react";
+// import "../scss/Recruitment.scss";
+// import AddRecruitWindow from "../components/AddRecruitWindow";
+// import EditRecruitWindow from "../components/EditRecruitWindow";
+// import Recruit from "../components/Recruit";
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
-            <label className="recruitShow__label" htmlFor="position">
-              Position
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="position"
-              value={editForm.position}
-              size="25"
-            />
-            <br />
+// const Recruitment = ({ data, getData }) => {
+//   const [toggleAddRecruit, setToggleAddRecruit] = useState(false);
+//   const [toggleEditRecruit, setToggleEditRecruit] = useState(true);
 
-            <label className="recruitShow__label" htmlFor="current_team">
-              Current Team
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="current_team"
-              value={editForm.current_team}
-              size="25"
-            />
-            <br />
+//   const loaded = () => {
+//     const teams = data.data;
+//     const userTeam = teams.filter((team) => team.user === user._id);
 
-            <label className="recruitShow__label" htmlFor="contact">
-              Contact
-            </label>
-            <br />
-            <input
-              className="recruitShow__input"
-              onChange={handleChange}
-              type="text"
-              name="contact"
-              value={editForm.contact}
-              size="25"
-            />
-            <br />
-            <label className="recruitShow__notes" htmlFor="notes">
-              Notes
-            </label>
-            <br />
-            <textarea
-              onChange={handleChange}
-              name="notes"
-              cols="50"
-              rows="5"
-              defaultValue={editForm.notes}
-            ></textarea>
-            <br />
+//     return (
+//       <div className="recruitment">
+//         {data.recruits
+//           .filter((recruit) => recruit.team === userTeam[0]._id)
+//           .map((item) => {
+//             return (
+//               <Recruit
+//                 key={item.id}
+//                 id={item._id}
+//                 firstName={item.firstName}
+//                 lastName={item.lastName}
+//                 contact={item.contact}
+//                 age={item.age}
+//                 hometown={item.hometown}
+//                 position={item.position}
+//                 height={item.height}
+//                 weight={item.weight}
+//                 current_team={item.current_team}
+//                 notes={item.notes}
+//                 getData={getData}
+//                 data={data}
+//                 userTeam={userTeam}
+//               />
+//             );
+//           })}
 
-            <button type="submit" className="recruitShow__submit">
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  };
+//         {toggleAddRecruit ? (
+//           <AddRecruitWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleAddRecruit={setToggleAddRecruit}
+//           />
+//         ) : (
+//           <div></div>
+//         )}
+//         {toggleEditRecruit ? (
+//           <EditRecruitWindow
+//             teams={teams}
+//             userTeam={userTeam}
+//             data={data}
+//             getData={getData}
+//             setToggleEditRecruit={setToggleEditRecruit}
+//           />
+//         ) : (
+//           <div></div>
+//         )}
 
-  const loading = () => {
-    return <h1>Loading...</h1>;
-  };
-  return <div>{team ? loaded() : loading()}</div>;
-};
+//         <div className="recruitment__heading">
+//           <h1>Recruitment</h1>
 
-export default RecruitShow;
+//           <button
+//             className="add-button"
+//             onClick={() => setToggleAddRecruit(!toggleAddRecruit)}
+//           >
+//             Add Recruit
+//           </button>
+//         </div>
+//         <div className="recruitment__line-divide"></div>
+//       </div>
+//     );
+//   };
+//   const loading = () => {
+//     return <h1>Loading...</h1>;
+//   };
+//   return <div>{data ? loaded() : loading()}</div>;
+// };
+
+// export default Recruitment;

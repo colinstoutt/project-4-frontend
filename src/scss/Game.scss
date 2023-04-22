@@ -5,7 +5,9 @@
   box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 5px;
   border-radius: 0 5px 5px 0;
   &__time {
-    color: #9f9f9f;
+    font-weight: 300;
+    color: #000000;
+    font-size: 1rem;
   }
   &__matchup {
     font-size: 1.5rem;

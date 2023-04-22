@@ -1,14 +1,16 @@
-// import React, { useState } from "react";
-// import "../scss/AddRecruit.scss";
+// import React from "react";
+// import { useState } from "react";
 // import { useNavigate } from "react-router";
+// import "../scss/AddRecruitWindow.scss";
+// // import { getUserFromToken } from "../services/tokenService";
+// // const user = getUserFromToken();
 
-// const RecruitAdd = ({ team, getTeam }) => {
-//   const URL = "http://localhost:8000/manager/recruit/";
+// const AddRecruitWindow = ({ userTeam, getData, setToggleAddRecruit }) => {
+//   const URL = "http://localhost:3002/manager/recruit/";
 //   const navigate = useNavigate();
-
 //   const [recruitForm, setRecruitForm] = useState({
-//     first_name: "",
-//     last_name: "",
+//     firstName: "",
+//     lastName: "",
 //     contact: "",
 //     age: "",
 //     hometown: "",
@@ -17,7 +19,7 @@
 //     weight: "",
 //     current_team: "",
 //     notes: "",
-//     team_id: 12,
+//     team: "6441e0ec3ce3bc6b1174b3c4",
 //   });
 
 //   async function createRecruit(form) {
@@ -28,7 +30,7 @@
 //       },
 //       body: JSON.stringify(form),
 //     });
-//     getTeam();
+//     getData();
 //   }
 
 //   const handleChange = (e) => {
@@ -41,8 +43,8 @@
 //     e.preventDefault();
 //     createRecruit(recruitForm);
 //     setRecruitForm({
-//       first_name: "",
-//       last_name: "",
+//       firstName: "",
+//       lastName: "",
 //       contact: "",
 //       age: "",
 //       hometown: "",
@@ -51,157 +53,127 @@
 //       weight: "",
 //       current_team: "",
 //       notes: "",
-//       team_id: 12,
+//       team: userTeam[0],
 //     });
-//     navigate("/recruitment");
+//     setToggleAddRecruit(false);
 //   };
-
 //   return (
-//     <div className="recruitAdd">
+//     <div
+//       className="recruit__window"
+//       style={{
+//         borderLeft: `10px solid ${userTeam[0].team_color}`,
+//       }}
+//     >
 //       <h1 className="recruitAdd__heading">Add Recruit</h1>
 //       <div className="recruitAdd__line-divide"></div>
-//       <div
-//         className="recruitAdd__container"
-//         style={{ borderLeft: `10px solid ${team.team_color}` }}
-//       >
+//       <div className="recruitAdd__container">
 //         <form onSubmit={handleSubmit}>
-//           <label className="recruitShow__label" htmlFor="hometown">
-//             First Name
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
-//             name="first_name"
+//             name="firstName"
 //             size="25"
-//             value={recruitForm.first_name}
+//             placeholder="First Name"
+//             value={recruitForm.firstName}
 //           />
-//           <br />
-//           <label className="recruitShow__label" htmlFor="hometown">
-//             Last Name
-//           </label>
-//           <br />
+
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
-//             name="last_name"
+//             name="lastName"
 //             size="25"
-//             value={recruitForm.last_name}
+//             placeholder="Last Name"
+//             value={recruitForm.lastName}
 //           />
-//           <br />
-//           <label className="recruitShow__label" htmlFor="hometown">
-//             Hometown
-//           </label>
-//           <br />
+
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="hometown"
 //             size="25"
+//             placeholder="Hometown"
 //             value={recruitForm.hometown}
 //           />
 //           <br />
-//           <label className="recruitShow__label" htmlFor="age">
-//             Age
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="age"
-//             size="25"
+//             size="5"
+//             placeholder="Age"
 //             value={recruitForm.age}
 //           />
-//           <br />
 
-//           <label className="recruitShow__label" htmlFor="height">
-//             Height (in)
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="height"
-//             size="25"
+//             size="7"
+//             placeholder="Height"
 //             value={recruitForm.height}
 //           />
-//           <br />
 
-//           <label className="recruitShow__label" htmlFor="weight">
-//             Weight (lbs)
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="weight"
-//             size="25"
+//             size="7"
+//             placeholder="Weight"
 //             value={recruitForm.weight}
 //           />
-//           <br />
-
-//           <label className="recruitShow__label" htmlFor="position">
-//             Position
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="position"
 //             size="25"
+//             placeholder="Positon"
 //             value={recruitForm.position}
 //           />
-//           <br />
-
-//           <label className="recruitShow__label" htmlFor="current_team">
-//             Current Team
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="current_team"
 //             size="25"
+//             placeholder="Current Team"
 //             value={recruitForm.current_team}
 //           />
-//           <br />
-
-//           <label className="recruitShow__label" htmlFor="contact">
-//             Contact
-//           </label>
-//           <br />
 //           <input
 //             onChange={handleChange}
-//             className="recruitShow__input"
+//             className="recruitAdd__input"
 //             type="text"
 //             name="contact"
 //             size="25"
+//             placeholder="Contact"
 //             value={recruitForm.contact}
 //           />
 //           <br />
-//           <label className="recruitShow__notes" htmlFor="notes">
-//             Notes
-//           </label>
 //           <br />
 //           <textarea
 //             onChange={handleChange}
 //             value={recruitForm.notes}
 //             name="notes"
-//             cols="50"
-//             rows="5"
+//             cols="85"
+//             rows="3"
+//             placeholder="Notes"
 //           ></textarea>
 //           <br />
 
-//           <button type="submit" className="recruitShow__submit">
+//           <button type="submit" className="recruitAdd__submit">
 //             Submit
+//           </button>
+//           <button
+//             onClick={() => setToggleAddRecruit(false)}
+//             className="recruitAdd__cancel"
+//           >
+//             Cancel
 //           </button>
 //         </form>
 //       </div>
@@ -209,4 +181,4 @@
 //   );
 // };
 
-// export default RecruitAdd;
+// export default AddRecruitWindow;
