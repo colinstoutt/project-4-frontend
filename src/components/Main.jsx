@@ -4,7 +4,7 @@ import Roster from "../pages/Roster";
 import EditPlayer from "../pages/EditPlayer";
 import Schedule from "../pages/Schedule";
 import Recruitment from "../pages/Recruitment";
-import RecruitShow from "../pages/EditRecruit";
+import EditRecruit from "../pages/EditRecruit";
 import EditTeam from "../pages/EditTeam";
 import CreateTeam from "../pages/CreateTeam";
 import EditGame from "../pages/EditGame";
@@ -20,7 +20,7 @@ const Main = (props) => {
         {/* <Route
           path="/team/create"
           element={<CreateTeam data={props.data} getData={props.getData} />}
-        />
+        /> */}
         <Route
           path="/roster"
           element={<Roster data={props.data} getData={props.getData} />}
@@ -43,12 +43,12 @@ const Main = (props) => {
         />
         <Route
           path="/recruitment/:id"
-          element={<RecruitShow data={props.data} getData={props.getData} />}
+          element={<EditRecruit data={props.data} getData={props.getData} />}
         />
         <Route
-          path="/edit-team"
+          path="/team/:id"
           element={<EditTeam data={props.data} getData={props.getData} />}
-        /> */}
+        />
       </Routes>
     </main>
   );

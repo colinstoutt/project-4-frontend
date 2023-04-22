@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Recruit = (props) => {
   const URL = "http://localhost:3002/manager/recruit/";
+  const team = props.data.data;
   async function deleteRecruit(id) {
     await fetch(`${URL}${id}/`, { method: "DELETE" });
     // console.log(id);
@@ -13,7 +14,7 @@ const Recruit = (props) => {
   return (
     <div
       className="recruit"
-      style={{ borderLeft: `10px solid ${props.userTeam[0].team_color}` }}
+      style={{ borderLeft: `10px solid ${team[0].team_color}` }}
     >
       <h1 className="recruit__heading">
         {props.firstName} {props.lastName}
@@ -21,7 +22,7 @@ const Recruit = (props) => {
           className="recruitment__show-link"
           to={`/recruitment/${props.id}/`}
         >
-          <EditIcon className="schedule__edit-icon" sx={{ fontSize: "1rem" }} />
+          <EditIcon className="edit-icon" sx={{ fontSize: "1rem" }} />
         </Link>
       </h1>
 

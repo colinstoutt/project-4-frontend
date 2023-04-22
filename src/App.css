@@ -17,6 +17,7 @@
 body {
   min-height: 100vh;
   font-family: "poppins", sans-serif;
+  background-color: #2a2e30;
 }
 
 img,
@@ -67,4 +68,13 @@ video {
 }
 textarea {
   resize: none;
+}
+.edit-icon {
+  color: grey;
+  font-size: 0.5rem;
+  margin-left: 0.5rem;
+}
+.edit-icon:hover {
+  color: black;
+  cursor: pointer;
 }

@@ -37,7 +37,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <Nav data={data} getData={getData} />
+      <Nav data={data} />
       <div className="main-container">
         <Main data={data} setData={setData} getData={getData} />
       </div>

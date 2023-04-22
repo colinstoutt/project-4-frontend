@@ -2,19 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "../scss/AddRecruitWindow.scss";
-import { getUserFromToken } from "../services/tokenService";
-const user = getUserFromToken();
+// import { getUserFromToken } from "../services/tokenService";
+// const user = getUserFromToken();
 
-const EditRecruitWindow = ({
-  userTeam,
-  data,
-  getData,
-  setToggleEditRecruit,
-}) => {
+const EditRecruitWindow = ({ data, getData, setToggleEditRecruit }) => {
   const URL = "http://localhost:3002/manager/recruit/";
   const { id } = useParams();
   const navigate = useNavigate();
-  const recruit = data && data.recruits.find((recruit) => recruit._id === id);
+  const team = data.data;
+  const recruit = data.recruits.find((recruit) => recruit._id === id);
   const [editForm, setEditForm] = useState(recruit);
   console.log(recruit, id);
 
@@ -49,7 +45,7 @@ const EditRecruitWindow = ({
     <div
       className="recruit__window"
       style={{
-        borderLeft: `10px solid ${userTeam[0].team_color}`,
+        borderLeft: `10px solid ${team[0].team_color}`,
       }}
     >
       <h1 className="recruitAdd__heading">Edit Recruit</h1>
@@ -110,10 +106,10 @@ const EditRecruitWindow = ({
             onChange={handleChange}
             className="recruitAdd__input"
             type="text"
-            name="weight"
+            name="Weight"
             size="7"
             placeholder="Weight"
-            value={editForm.weight}
+            value={editForm.Weight}
           />
           <input
             onChange={handleChange}

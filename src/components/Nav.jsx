@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 // const user = getUserFromToken();
 
 const Nav = ({ data }) => {
-  const team = data.data;
   const loaded = () => {
+    const team = data.data;
+
     return (
       <div className="nav">
         <div className="nav__main-links">
@@ -30,12 +31,7 @@ const Nav = ({ data }) => {
                 <span>Recruitment</span>
               </Link>
               <Link to="/team">
-                <span
-                  className="nav__logout nav__link"
-                  // onClick={() => handleLogout()}
-                >
-                  Sign Out
-                </span>
+                <span className="nav__logout nav__link">Sign Out</span>
               </Link>
             </div>
           </div>
@@ -45,7 +41,7 @@ const Nav = ({ data }) => {
   };
 
   const loading = () => {
-    return <h1>Loading...</h1>;
+    return <h1 className="nav"></h1>;
   };
   return data ? loaded() : loading();
 };

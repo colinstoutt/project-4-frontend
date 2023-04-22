@@ -5,6 +5,7 @@
     margin-bottom: 1rem;
     &-container {
       display: flex;
+      align-items: center;
       justify-content: space-between;
     }
     &-add {
@@ -31,15 +32,6 @@
     height: 1px;
     background-color: lightgrey;
     margin-bottom: 1rem;
-  }
-  &__edit-icon {
-    color: grey;
-    font-size: 0.5rem;
-    margin-left: 0.5rem;
-    &:hover {
-      color: black;
-      cursor: pointer;
-    }
   }
   &__add-button {
     margin: 1rem 0;
