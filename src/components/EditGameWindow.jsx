@@ -54,7 +54,7 @@ const EditGameWindow = ({ data, getData, setToggleEditGame }) => {
           <div className="game__time">
             <input
               onChange={handleChange}
-              value={editForm.date.slice(0, -14)}
+              value={editForm.date.slice(0, 10)}
               required
               className="game__input"
               type="text"
