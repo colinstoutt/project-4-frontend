@@ -33,12 +33,12 @@ const EditTeamWindow = ({ data, getData, setToggleEdit }) => {
   function handleSubmit(e) {
     e.preventDefault();
     updateTeam(teamForm, id);
-    navigate("/team");
+    navigate("/");
   }
 
   const handleCancel = () => {
     setToggleEdit(false);
-    navigate("/team");
+    navigate("/");
   };
 
   const loaded = () => {

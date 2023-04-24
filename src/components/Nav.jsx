@@ -1,6 +1,8 @@
 import "../scss/Nav.scss";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+
 // import { getUserFromToken } from "../services/tokenService";
 // const user = getUserFromToken();
 
@@ -18,7 +20,7 @@ const Nav = ({ data }) => {
                 src={team[0].logo_url}
                 alt={team[0].mascot}
               />
-              <Link className="nav__link" to="/team">
+              <Link className="nav__link" to="/">
                 <span>{`${team[0].city} ${team[0].mascot}`}</span>
               </Link>
               <Link className="nav__link" to="/roster">
@@ -30,7 +32,7 @@ const Nav = ({ data }) => {
               <Link className="nav__link" to="/recruitment">
                 <span>Recruitment</span>
               </Link>
-              <Link to="/team">
+              <Link to="/">
                 <span className="nav__logout nav__link">Sign Out</span>
               </Link>
             </div>
@@ -41,7 +43,11 @@ const Nav = ({ data }) => {
   };
 
   const loading = () => {
-    return <h1 className="nav"></h1>;
+    return (
+      <h1 className="nav">
+        <CircularProgress />
+      </h1>
+    );
   };
   return data ? loaded() : loading();
 };

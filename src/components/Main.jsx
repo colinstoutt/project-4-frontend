@@ -14,7 +14,7 @@ const Main = (props) => {
     <main>
       <Routes>
         <Route
-          path="/team"
+          path="/"
           element={<Index data={props.data} getData={props.getData} />}
         />
         {/* <Route

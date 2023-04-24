@@ -3,6 +3,7 @@ import { getUserFromToken } from "../services/tokenService";
 import AddPlayerWindow from "../components/AddPlayerWindow";
 import { useNavigate } from "react-router";
 import EditIcon from "@mui/icons-material/Edit";
+import { CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import config from "../config";
 
@@ -76,7 +77,9 @@ const Index = ({ data }) => {
     );
   };
   const loading = () => {
-    <div className="loading">Loading...</div>;
+    <div className="loading">
+      <CircularProgress />
+    </div>;
   };
   return <div>{data ? loaded() : loading()}</div>;
 };
