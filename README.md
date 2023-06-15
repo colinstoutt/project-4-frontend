@@ -4,7 +4,7 @@ This web app will allow a sports team to keep a record of it's player roster, sc
 
 ## Live Link
 
-https://vermillion-khapse-53bfce.netlify.app
+https://team-manager-demo.vercel.app/
 
 ## Backend Repository
 
